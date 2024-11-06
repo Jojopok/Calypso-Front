@@ -1,0 +1,8 @@
+<div class="register-form">
+    <app-title text="INSCRIPTION"></app-title>
+    <app-input-field label="Prénom" fieldId="firstName"></app-input-field>
+    <app-input-field label="Nom" fieldId="lastName"></app-input-field>
+    <app-input-field label="Adresse email" fieldId="email"></app-input-field>
+    <app-input-field label="Profil odyssey" fieldId="odysseyProfile"></app-input-field>
+    <app-button label="S'ENREGISTRER" buttonType="primary" (click)="onSubmit()" [routerLink]="['/home']"></app-button>
+</div>
