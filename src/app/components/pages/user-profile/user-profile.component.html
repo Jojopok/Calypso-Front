@@ -1,3 +1,10 @@
-<div class="container mt-5">
-    <app-user-profile-section avatarSrc="https://via.placeholder.com/100"></app-user-profile-section>
-</div>
+<app-user-profile-section
+  [firstNamePlaceholder]="userForm.get('firstName')?.value || 'Prénom non disponible'"
+  [lastNamePlaceholder]="userForm.get('lastName')?.value || 'Nom non disponible'"
+  [phoneNumberPlaceholder]="userForm.get('phoneNumber')?.value || 'Non renseigné'"
+  [emailPlaceholder]="userForm.get('email')?.value || 'Email non disponible'"
+  [odysseyProfilePlaceholder]="userForm.get('odysseyProfile')?.value || 'Lien non disponible'"
+  [rolePlaceholder]="userForm.get('role')?.value || 'Rôle non disponible'"
+  [avatarSrc]="userAvatarUrl"
+>
+</app-user-profile-section>

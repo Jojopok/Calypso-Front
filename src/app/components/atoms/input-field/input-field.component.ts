@@ -1,15 +1,55 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewEncapsulation, forwardRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-input-field',
   standalone: true,
-  imports: [],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => InputFieldComponent),
+      multi: true
+    }
+  ],
   templateUrl: './input-field.component.html',
-  styleUrl: './input-field.component.scss'
+  styleUrls: ['./input-field.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
-export class InputFieldComponent {
+export class InputFieldComponent implements ControlValueAccessor {
   @Input() label: string = '';
   @Input() type: string = 'text';
   @Input() placeholder: string = '';
   @Input() fieldId: string = '';
+
+  // Valeur actuelle du champ d'entrée
+  value: string = '';
+
+  // Méthodes pour la gestion des changements et des touches
+  onChange = (value: string) => {};
+  onTouched = () => {};
+
+  // Implémentation de ControlValueAccessor
+  writeValue(value: string): void {
+    this.value = value || '';
+  }
+
+  registerOnChange(fn: any): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: any): void {
+    this.onTouched = fn;
+  }
+
+  // Méthode appelée lorsque l'utilisateur change la valeur
+  onInputChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    this.value = input.value;
+    this.onChange(this.value); // Informe Angular du changement de valeur
+  }
+
+  // Méthode appelée lorsque le champ est touché
+  onBlur(): void {
+    this.onTouched();
+  }
 }
