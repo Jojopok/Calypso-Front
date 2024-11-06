@@ -1,3 +1,42 @@
-<div class="container mt-5">
-    <app-user-profile-section avatarSrc="https://via.placeholder.com/100"></app-user-profile-section>
-</div>
+<form [formGroup]="userForm" class="user-profile-section">
+    <div class="profile-info">
+      <app-input-field
+        label="Prénom"
+        fieldId="firstName"
+        formControlName="firstName"
+      ></app-input-field>
+      <app-input-field
+        label="Nom"
+        fieldId="lastName"
+        formControlName="lastName"
+      ></app-input-field>
+      <app-input-field
+        label="Numéro de téléphone"
+        fieldId="phoneNumber"
+        formControlName="phoneNumber"
+      ></app-input-field>
+    </div>
+  
+    <div class="profile-avatar">
+      <app-avatar [src]="userAvatarUrl" alt="Photo de profil"></app-avatar>
+    </div>
+  
+    <div class="additional-info">
+      <app-input-field
+        label="Adresse email"
+        fieldId="email"
+        formControlName="email"
+      ></app-input-field>
+      <app-input-field
+        label="Profil odyssey"
+        fieldId="odysseyProfile"
+        formControlName="odysseyProfile"
+      ></app-input-field>
+      <app-input-field
+        label="Mon rôle"
+        fieldId="role"
+        formControlName="role"
+      ></app-input-field>
+    </div>
+  </form>
+  
