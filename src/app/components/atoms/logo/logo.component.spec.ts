@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UserInfoGroupComponent } from './user-info-group.component';
+import { LogoComponent } from './logo.component';
 
-describe('UserInfoGroupComponent', () => {
-  let component: UserInfoGroupComponent;
-  let fixture: ComponentFixture<UserInfoGroupComponent>;
+describe('LogoComponent', () => {
+  let component: LogoComponent;
+  let fixture: ComponentFixture<LogoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UserInfoGroupComponent]
+      imports: [LogoComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(UserInfoGroupComponent);
+    fixture = TestBed.createComponent(LogoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
