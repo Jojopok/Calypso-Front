@@ -4,6 +4,7 @@ import { UserProfileComponent } from "./components/pages/user-profile/user-profi
 import { HttpClientModule } from '@angular/common/http';
 import { LandingPageComponent } from './components/pages/landing-page/landing-page.component';
 
+
 @Component({
   selector: 'app-root',
   standalone: true,

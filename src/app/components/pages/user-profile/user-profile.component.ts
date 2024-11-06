@@ -8,15 +8,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { UserProfileSectionComponent } from '../../organisms/user-profile-section/user-profile-section.component';
 import { InputFieldComponent } from '../../atoms/input-field/input-field.component';
 
+
 @Component({
   selector: 'app-user-profile',
-  standalone: true,
-  imports: [UserProfileSectionComponent],
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.scss'],
   standalone: true,
   providers: [HttpClientModule],
   imports: [ReactiveFormsModule, UserProfileSectionComponent, InputFieldComponent, AvatarComponent]
+
 })
 export class UserProfileComponent implements OnInit {
   userForm: FormGroup;
