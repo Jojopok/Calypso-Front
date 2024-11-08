@@ -12,8 +12,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     }
   ],
   templateUrl: './input-field.component.html',
-  styleUrls: ['./input-field.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./input-field.component.scss']
 })
 export class InputFieldComponent implements ControlValueAccessor {
   @Input() label: string = '';

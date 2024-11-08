@@ -1,22 +1,28 @@
+@import '../../../../styles/variables';
+
 .login-form {
     background-color: #000000;
     padding: 2rem;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
-    width: 40%;
+    width: 60%;
+    margin: 0 auto;
+
+  @media (max-width: 768px) {
+    width: 100%;
   }
-  
+}
+
   .info-text {
     font-size: 0.875rem;
     color: #cccccc;
     margin-top: 0.5rem;
     margin-bottom: 1rem;
     text-align: center;
-  
+
     a {
-      color: #ff0078;
+      color: $tertiary-color;
       text-decoration: none;
     }
   }
-  
