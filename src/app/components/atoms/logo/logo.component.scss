@@ -1,8 +1,11 @@
+@import '../../../../styles/variables';
+
 .logo {
-    font-size: 3rem;
-    font-weight: bold;
-    color: #ffffff;
-    text-align: center;
-    margin: 2rem 0;
-  }
-  
+  font-size: 6rem;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: $background-color; 
+  padding: 0.5rem 1rem 0.5rem 6rem;
+  text-align: center;
+  letter-spacing: 4rem;
+}
