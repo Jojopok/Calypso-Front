@@ -1,0 +1,28 @@
+.icon-card {
+  display: flex;
+  flex-direction: column; /* Organisation verticale */
+  align-items: center; /* Centrage horizontal */
+
+  .icon-container {
+    background-color: #2e2e2e;
+    border-radius: 50%; /* Cercle parfait */
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px; /* Ajoute de l'espace entre le cercle et le texte */
+
+    app-icon {
+      width: 48px;
+      height: 48px;
+      z-index: 1000;
+    }
+  }
+
+  app-text {
+    text-align: center;
+    font-size: 14px;
+    color: white;
+  }
+}

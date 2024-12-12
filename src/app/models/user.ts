@@ -4,7 +4,7 @@ export interface User {
     lastName: string;
     phoneNumber?: string;
     email: string;
-    odysseyProfile?: string; 
+    odysseyLink?: string; 
     role: string;
     avatarUrl?: string;
 }

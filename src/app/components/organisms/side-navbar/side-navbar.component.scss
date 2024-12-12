@@ -1,0 +1,80 @@
+.side-navbar {
+  /* Styles par défaut (étendue) */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 250px;
+  height: 100vh;
+  background-color: #222; /* Fond par défaut */
+  transition: all 0.3s ease; /* Transition fluide */
+
+  &.collapsed {
+    /* Styles pour l'état rétracté */
+    width: 80px;
+    background-color: #111; /* Nouveau fond */
+  }
+
+  .user {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+
+    .user-name {
+      margin-left: 10px;
+      font-size: 16px;
+      color: white;
+      opacity: 1;
+      white-space: nowrap;
+      transition: opacity 0.3s ease;
+
+      /* Masque le nom d'utilisateur en mode rétracté */
+      .side-navbar.collapsed & {
+        display: none; /* Supprime le texte */
+      }
+    }
+  }
+
+  .nav-list,
+  .navbar-footer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+
+    .nav-item,
+    .footer-item {
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: #333;
+      }
+
+      .icon {
+        width: 24px;
+        height: 24px;
+        margin-right: 10px;
+
+        /* Supprime les marges en mode rétracté */
+        .side-navbar.collapsed & {
+          margin-right: 0;
+        }
+      }
+
+      .label {
+        font-size: 14px;
+        color: white;
+        transition: opacity 0.3s ease;
+
+        /* Masque le texte en mode rétracté */
+        .side-navbar.collapsed & {
+          display: none; /* Cache complètement le texte */
+        }
+      }
+    }
+  }
+}

@@ -1,9 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-text',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './text.component.html',
   styleUrl: './text.component.scss'
 })

@@ -1,9 +1,30 @@
+@import '../../../../styles/variables';
+
 .register-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #1f1f1f;
-    color: #ffffff;
-    height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: $background-color;
+  position: relative;  
   }
-  
+.page-frame {
+  border: 8px solid #ffffff;     
+  width: 90vw;
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.logo-overlay {
+  position: absolute;
+  top: -5rem;                 
+  left: 50%;
+  transform: translateX(-50%);  
+  background-color: #1f1f1f;
+  z-index: 10;                
+}
