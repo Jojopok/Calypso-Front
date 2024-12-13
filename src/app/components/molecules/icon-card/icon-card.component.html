@@ -1,7 +1,9 @@
 <div class="icon-card" (click)="navigate()">
-    <div class="icon-container">
-      <app-icon [iconSrc]="iconSrc"></app-icon>
-    </div>
-    <app-text [text]="label"></app-text>
-  </div>
+  <app-icon-container>
+    <app-icon [iconSrc]="iconSrc" [width]="130"
+    [height]="130" ></app-icon>
+  </app-icon-container>
+</div>
+  <app-subtitle [text]="label"></app-subtitle>
+ 
   

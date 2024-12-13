@@ -1,24 +1,13 @@
 <div class="side-navbar" [class.collapsed]="isCollapsed">
+  <div class="side-navbar-container">
+    <div>
+      <app-user avatarSrc="/assets/icons/profil.svg" altText="Amina Chakir" [isCollapsed]="isCollapsed"></app-user>
+      <app-nav-list [items]="mainItems" [isCollapsed]="isCollapsed" class="main-nav"></app-nav-list>
+    </div>
+    <app-nav-list [items]="footerItems" [isCollapsed]="isCollapsed" class="footer-nav"></app-nav-list>
+  </div>
   <app-toggle-button
-    [isCollapsed]="isCollapsed"
-    (toggle)="toggleNavbar()">
+  [isCollapsed]="isCollapsed"
+  (click)="toggleNavbar()">
   </app-toggle-button>
-
-  <div class="user">
-    <app-avatar [src]="'/assets/icons/avatar.jpg'" [alt]="'Amina Chakir'"></app-avatar>
-    <app-text *ngIf="!isCollapsed" [text]="'Amina Chakir'" class="user-name"></app-text>
-  </div>
-
-  <div class="nav-list">
-    <app-nav-item iconSrc="/assets/icons/algo.svg" label="Algorithme" route="/algo"></app-nav-item>
-    <app-nav-item iconSrc="/assets/icons/profil.svg" label="Profil" route="/profil"></app-nav-item>
-    <app-nav-item iconSrc="/assets/icons/admin.svg" label="Admin" route="/admin"></app-nav-item>
-  </div>
-
-  <footer class="navbar-footer">
-    <app-nav-item iconSrc="/assets/icons/notification.svg" label="Notification" route="/algo"></app-nav-item>
-    <app-nav-item iconSrc="/assets/icons/settings.svg" label="Mes informations" route="/profil"></app-nav-item>
-    <app-nav-item iconSrc="/assets/icons/logout.svg" label="Deconnexion" route="/admin"></app-nav-item>
-  </footer>
 </div>
-

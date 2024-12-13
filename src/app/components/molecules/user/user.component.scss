@@ -1,15 +1,12 @@
+@import '../../../../styles/variables';
+
 .user {
     display: flex;
     align-items: center;
-    padding: 20px;
     transition: all 0.3s ease;
-  
-    .user-name {
-      margin-left: 10px;
-      font-size: 16px;
-      color: white;
-      white-space: nowrap;
-      transition: opacity 0.3s ease;
+    background-color: $background-color-form;
+    app-text{
+      margin-left: 20px;
     }
-  }
+}
   

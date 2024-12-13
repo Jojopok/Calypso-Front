@@ -2,8 +2,9 @@
 $primary-color: #1976d2; // Couleur primaire de Material UI
 $secondary-color: #424242;
 $tertiary-color: #ff0078;
-$background-color: #121212;
-$background-color-form: black;
+$background-color: #1D1D1D;
+$second-background-color: #262626;
+$background-color-form: #121212;
 $text-color: #ffffff;
 $border-color: #333;
 
@@ -14,6 +15,9 @@ $border-radius: 8px;
 $spacing-unit: 16px;
 $input-padding: 8px;
 $input-border-radius: 5px;
+$expanded-navbar-width: 250px;
+$collapsed-navbar-width: 60px;
+
 
 // Typographie
 $font-size-base: 14px;

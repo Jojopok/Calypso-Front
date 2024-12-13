@@ -1,7 +1,6 @@
 <div class="layout">
-    <app-side-navbar></app-side-navbar> <!-- Navbar à gauche -->
-    <div class="page-content">
-      <router-outlet></router-outlet> <!-- Affichage dynamique des pages -->
-    </div>
+  <app-side-navbar (toggle)="updateCollapseState($event)"></app-side-navbar> <!-- Navbar à gauche -->
+  <div class="page-content" [ngClass]="{ 'collapsed': isCollapsed, 'expanded': !isCollapsed }">
+    <router-outlet></router-outlet> <!-- Affichage dynamique des pages -->
   </div>
-  
+</div>

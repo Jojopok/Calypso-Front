@@ -1,3 +1,5 @@
+@import '../../../../styles/variables';
+
 .layout {
     display: flex;
     height: 100vh;
@@ -5,6 +7,15 @@
     .page-content {
       flex-grow: 1;
       overflow-y: auto;
+      transition: 0.3s ease;
+    
+      &.collapsed {
+        margin-left: $collapsed-navbar-width; 
+      }
+    
+      &.expanded {
+        margin-left: $expanded-navbar-width;
+      }
     }
 }
   

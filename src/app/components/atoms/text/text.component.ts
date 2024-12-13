@@ -10,4 +10,6 @@ import { Component, Input } from '@angular/core';
 })
 export class TextComponent {
   @Input() text: string = '';
+  @Input() color: string = 'white';
+  @Input() fontSize: string = '1rem';
 }

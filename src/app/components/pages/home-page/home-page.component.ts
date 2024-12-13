@@ -10,5 +10,5 @@ import { SideNavbarComponent } from "../../organisms/side-navbar/side-navbar.com
   styleUrl: './home-page.component.scss'
 })
 export class HomePageComponent {
-
+  
 }
