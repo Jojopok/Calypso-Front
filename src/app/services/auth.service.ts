@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { jwtDecode } from 'jwt-decode'; 
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -47,5 +48,10 @@ export class AuthService {
   // Supprimer le token pour déconnecter l'utilisateur
   logout(): void {
     localStorage.removeItem(this.tokenKey);
+  }
+
+  register(user: User): Observable<any> {
+    console.log(user);
+    return this.http.post(`${this.apiUrl}/register`, user);
   }
 }

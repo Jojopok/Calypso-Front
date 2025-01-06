@@ -1,0 +1,28 @@
+.toggle-button {
+  background-color: #e0e0e0; 
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: absolute;
+  top: 50%; /* Ajustez pour placer correctement */
+  right: -20px; /* Faire dépasser légèrement du bord de la navbar */
+  transform: translateY(-50%); 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+  z-index: 1000;
+
+  .arrow {
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+  }
+
+  &:hover {
+    background-color: #d6d6d6; 
+  }
+}

@@ -1,10 +1,11 @@
-<div class="login-form">
-    <app-title text="BIENVENUE"></app-title>
-    <app-text text="Connectez-vous dès maintenant pour découvrir une plateforme unique centralisant toutes vos cérémonies et réunions professionnelles"></app-text>
-    <app-input-field label="Votre adresse mail :" fieldId="email" type="email"></app-input-field>
-    <app-input-field label="Mot de passe :" fieldId="password" type="password"></app-input-field>
-    <div class="info-text">3 caractères minimum. <a href="#">Mot de passe oublié ?</a></div>
-    <app-button label="SE CONNECTER" buttonType="primary"></app-button>
-    <app-button label="S'ENREGISTRER" buttonType="secondary" [routerLink]="['/register']"></app-button>
-  </div>
+<div class="login-form" [formGroup]="loginForm">
+  <app-title text="BIENVENUE"></app-title>
+  <app-text text="Connectez-vous dès maintenant pour découvrir une plateforme unique centralisant toutes vos cérémonies et réunions professionnelles"></app-text>
+  <app-input-field label="Votre adresse mail :" fieldId="email" type="email" formControlName="email"></app-input-field>
+  <app-input-field label="Mot de passe :" fieldId="password" type="password" formControlName="password"></app-input-field>
+  <div class="info-text">3 caractères minimum. <a href="#">Mot de passe oublié ?</a></div>
+  <app-button label="SE CONNECTER" buttonType="primary" (click)="onSubmit()"></app-button>
+  <app-button label="S'ENREGISTRER" buttonType="secondary" [routerLink]="['/register']"></app-button>
+</div>
+
   

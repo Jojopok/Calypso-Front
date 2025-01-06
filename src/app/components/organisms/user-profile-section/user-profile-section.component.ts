@@ -15,6 +15,6 @@ export class UserProfileSectionComponent {
   @Input() lastNamePlaceholder: string = '';
   @Input() phoneNumberPlaceholder: string = '';
   @Input() emailPlaceholder: string = '';
-  @Input() odysseyProfilePlaceholder: string = '';
+  @Input() odysseyLinkPlaceholder: string = '';
   @Input() rolePlaceholder: string = '';
 }

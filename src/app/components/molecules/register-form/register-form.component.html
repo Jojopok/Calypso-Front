@@ -1,8 +1,10 @@
-<div class="register-form">
+<div class="register-form" [formGroup]="registerForm">
     <app-title text="INSCRIPTION"></app-title>
-    <app-input-field label="Prénom" fieldId="firstName"></app-input-field>
-    <app-input-field label="Nom" fieldId="lastName"></app-input-field>
-    <app-input-field label="Adresse email" fieldId="email"></app-input-field>
-    <app-input-field label="Profil odyssey" fieldId="odysseyProfile"></app-input-field>
-    <app-button label="S'ENREGISTRER" buttonType="primary" (click)="onSubmit()" [routerLink]="['/home']"></app-button>
-</div>
+    <app-input-field label="Prénom" fieldId="firstName" formControlName="firstName"></app-input-field>
+    <app-input-field label="Nom" fieldId="lastName" formControlName="lastName"></app-input-field>
+    <app-input-field label="Adresse email" fieldId="email" formControlName="email"></app-input-field>
+    <app-input-field label="Profil odyssey" fieldId="odysseyLink" formControlName="odysseyLink"></app-input-field>
+    <app-input-field label="Mot de passe" fieldId="password" type="password" formControlName="password"></app-input-field>
+    <app-button label="S'ENREGISTRER" buttonType="primary" (click)="onSubmit()"></app-button>
+  </div>
+  

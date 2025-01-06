@@ -1,0 +1,27 @@
+@import '../../../../styles/variables';
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 18px;
+    color: white;
+    text-decoration: none;
+    transition: 0.3s ease;
+    background-color: $background-color-form;
+  
+    &:hover {
+      background-color: $second-background-color;
+    }
+  
+    .nav-icon {
+      width: 24px;
+      height: 24px;
+      margin-right: 20%;
+    }
+    .nav-label {
+      font-size: 1rem;
+      color: white;
+      transition: opacity 0.3s ease;
+    }
+  }
+  

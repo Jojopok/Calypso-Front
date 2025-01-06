@@ -15,7 +15,7 @@ import { InputFieldComponent } from '../../atoms/input-field/input-field.compone
   styleUrls: ['./user-profile.component.scss'],
   standalone: true,
   providers: [HttpClientModule],
-  imports: [ReactiveFormsModule, UserProfileSectionComponent, InputFieldComponent, AvatarComponent]
+  imports: [ReactiveFormsModule, UserProfileSectionComponent]
 
 })
 export class UserProfileComponent implements OnInit {
@@ -32,7 +32,7 @@ export class UserProfileComponent implements OnInit {
       lastName: [''],
       phoneNumber: [''],
       email: [''],
-      odysseyProfile: [''],
+      odysseyLink: [''],
       role: ['']
     });
   }
@@ -47,7 +47,7 @@ export class UserProfileComponent implements OnInit {
             lastName: userData.lastName,
             phoneNumber: userData.phoneNumber,
             email: userData.email,
-            odysseyProfile: userData.odysseyProfile,
+            odysseyLink: userData.odysseyLink,
             role: userData.role
           });
           this.userAvatarUrl = userData.avatarUrl || 'path/to/default-avatar.jpg';

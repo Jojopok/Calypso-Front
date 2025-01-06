@@ -1,0 +1,9 @@
+@import '../../../../styles/variables';
+.home-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: $background-color;
+    position: relative;           
+  }

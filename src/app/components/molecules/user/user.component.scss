@@ -1,0 +1,12 @@
+@import '../../../../styles/variables';
+
+.user {
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    background-color: $background-color-form;
+    app-text{
+      margin-left: 20px;
+    }
+}
+  
