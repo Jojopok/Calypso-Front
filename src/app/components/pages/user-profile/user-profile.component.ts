@@ -18,46 +18,6 @@ import { InputFieldComponent } from '../../atoms/input-field/input-field.compone
   imports: [ReactiveFormsModule, UserProfileSectionComponent]
 
 })
-export class UserProfileComponent implements OnInit {
-  userForm: FormGroup;
-  userAvatarUrl: string = ''; // URL de l'avatar utilisateur
-
-  constructor(
-    private fb: FormBuilder,
-    private userService: UserService,
-    private authService: AuthService
-  ) {
-    this.userForm = this.fb.group({
-      firstName: [''],
-      lastName: [''],
-      phoneNumber: [''],
-      email: [''],
-      odysseyLink: [''],
-      role: ['']
-    });
-  }
-
-  ngOnInit(): void {
-    const userId = this.authService.getCurrentUserId(); // Récupération de l'ID utilisateur à partir du JWT
-    if (userId) {
-      this.userService.getUserById(userId).subscribe(
-        (userData: User) => {
-          this.userForm.patchValue({
-            firstName: userData.firstName,
-            lastName: userData.lastName,
-            phoneNumber: userData.phoneNumber,
-            email: userData.email,
-            odysseyLink: userData.odysseyLink,
-            role: userData.role
-          });
-          this.userAvatarUrl = userData.avatarUrl || 'path/to/default-avatar.jpg';
-        },
-        (error: Error) => {
-          console.error('Erreur lors de la récupération des données utilisateur', error);
-        }
-      );
-    } else {
-      console.error('Utilisateur non authentifié ou ID introuvable');
-    }
-  }
+export class UserProfileComponent {
+  
 }

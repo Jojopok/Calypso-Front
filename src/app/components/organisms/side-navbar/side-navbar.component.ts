@@ -3,6 +3,7 @@ import { ToggleButtonComponent } from '../../atoms/toggle-button/toggle-button.c
 import { CommonModule } from '@angular/common';
 import { UserComponent } from '../../molecules/user/user.component';
 import { NavListComponent } from "../../molecules/nav-list/nav-list.component";
+import { AuthService } from '../../../services/auth.service';
 @Component({
   selector: 'app-side-navbar',
   standalone: true,
@@ -11,6 +12,9 @@ import { NavListComponent } from "../../molecules/nav-list/nav-list.component";
   styleUrl: './side-navbar.component.scss'
 })
 export class SideNavbarComponent {
+
+  constructor(private authService: AuthService) {}
+  
   isCollapsed = false;
   @Output() toggle = new EventEmitter<boolean>();
 
@@ -29,6 +33,13 @@ export class SideNavbarComponent {
   footerItems = [
     { iconSrc: '/assets/icons/notification.svg', text: 'Notification', route: '/notification', isCollapsed: "isCollapsed" },
     { iconSrc: '/assets/icons/settings.svg', text: 'Informations', route: '/settings', isCollapsed: "isCollapsed" },
-    { iconSrc: '/assets/icons/logout.svg', text: 'Déconnexion', route: '/', isCollapsed: "isCollapsed" },
+    { iconSrc: '/assets/icons/logout.svg', text: 'Déconnexion', route: '/', isCollapsed: "isCollapsed",  action: () => this.logout()},
   ];
+
+  /**
+   * Méthode pour gérer la déconnexion
+   */
+  logout(): void {
+    this.authService.logout();
+  }
 }

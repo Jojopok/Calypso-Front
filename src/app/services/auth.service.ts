@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { jwtDecode } from 'jwt-decode'; 
 import { User } from '../models/user';
 
@@ -13,9 +13,19 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  // Méthode pour authentifier l'utilisateur et stocker le token JWT
-  login(credentials: { username: string; password: string }): Observable<any> {
-    return this.http.post(this.apiUrl, credentials);
+  /**
+   * Méthode pour authentifier l'utilisateur et stocker le token JWT
+   * Le token est extrait correctement de la réponse et stocké localement.
+   */
+  login(credentials: { username: string; password: string }): Observable<{token: string}> {
+    return this.http.post<{token: string}>(`${this.apiUrl}/login`, credentials)
+      .pipe(
+        tap(response => {
+          if (response && response.token) {
+            this.setToken(response.token);
+          }
+        })
+      );
   }
 
   // Stocker le token dans le stockage local
@@ -23,22 +33,29 @@ export class AuthService {
     localStorage.setItem(this.tokenKey, token);
   }
 
-  // Récupérer l'ID utilisateur à partir du token JWT
   getCurrentUserId(): number | null {
     const token = localStorage.getItem(this.tokenKey);
-    if (token) {
-      try {
-        const decodedToken: any = jwtDecode(token); // Appel de la fonction `jwtDecode`
-        console.log(decodedToken)
-        return decodedToken?.userId || null; 
-      } catch (error) {
-        console.error('Erreur lors du décodage du token JWT', error);
+    if (!token) {
+        console.warn('Aucun token trouvé dans le localStorage.');
         return null;
-      }
     }
-    return null;
-  }
 
+    try {
+        const decodedToken: any = jwtDecode(token); // Décoder le token JWT
+        if (decodedToken?.sub) {
+            const userId = Number(decodedToken.sub);
+            if (!isNaN(userId)) {
+                return userId; // Conversion sécurisée en nombre
+            }
+        }
+        console.error('Le token ne contient pas d\'ID utilisateur valide.');
+        return null;
+    } catch (error) {
+        console.error('Erreur lors du décodage du token JWT :', error);
+        return null;
+    }
+  }
+  
   // Vérifier si l'utilisateur est authentifié
   isAuthenticated(): boolean {
     const token = localStorage.getItem(this.tokenKey);

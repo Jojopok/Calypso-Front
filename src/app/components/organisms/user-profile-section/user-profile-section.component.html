@@ -1,15 +1,52 @@
 <div class="user-profile-section">
+  <!-- Informations générales -->
   <div class="profile-info">
-    <app-input-field label="Prénom" [placeholder]="firstNamePlaceholder"></app-input-field>
-    <app-input-field label="Nom" [placeholder]="lastNamePlaceholder"></app-input-field>
-    <app-input-field label="Numéro de téléphone" [placeholder]="phoneNumberPlaceholder"></app-input-field>
+    <app-input-field 
+      label="Prénom" 
+      placeholder="Prénom" 
+      [value]="firstName">
+    </app-input-field>
+
+    <app-input-field 
+      label="Nom" 
+      placeholder="Nom" 
+      [value]="lastName">
+    </app-input-field>
+
+    <app-input-field 
+      label="Numéro de téléphone" 
+      placeholder="Numéro de téléphone" 
+      [value]="phoneNumber">
+    </app-input-field>
   </div>
+
+  <!-- Avatar -->
   <div class="profile-avatar">
-    <app-avatar [src]="avatarSrc" alt="Photo de profil"></app-avatar>
+    <app-avatar 
+      [src]="avatarSrc" 
+      alt="Photo de profil">
+    </app-avatar>
   </div>
+
+  <!-- Informations complémentaires -->
   <div class="additional-info">
-    <app-input-field label="Adresse email" [placeholder]="emailPlaceholder"></app-input-field>
-    <app-input-field label="Profil odyssey" [placeholder]="odysseyLinkPlaceholder"></app-input-field>
-    <app-input-field label="Mon rôle" [placeholder]="rolePlaceholder"></app-input-field>
+    <app-input-field 
+      label="Adresse email" 
+      placeholder="Email" 
+      [value]="email">
+    </app-input-field>
+
+    <app-input-field 
+      label="Profil odyssey" 
+      placeholder="Lien du profil Odyssey" 
+      [value]="odysseyLink">
+    </app-input-field>
+
+    <app-input-field 
+      label="Mon rôle" 
+      placeholder="" 
+      [isDisabled]="true" 
+      [value]="role">
+    </app-input-field>
   </div>
 </div>

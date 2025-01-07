@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { MainLayoutComponent } from './components/layout/main-layout/main-layout.component';
+import { MainLayoutComponent } from './components/templates/main-layout/main-layout.component';
 import { LandingPageComponent } from './components/pages/landing-page/landing-page.component';
 import { RegisterPageComponent } from './components/pages/register-page/register-page.component';
 import { UserProfileComponent } from './components/pages/user-profile/user-profile.component';
