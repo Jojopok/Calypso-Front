@@ -1,4 +1,6 @@
 <div class="user-profile-section">
+  <app-subtitle [text]="'A propos de moi'" [fontSize]="'1.5em'"></app-subtitle>
+  <div class="user-info">
   <!-- Informations générales -->
   <div class="profile-info">
     <app-input-field 
@@ -23,7 +25,9 @@
   <!-- Avatar -->
   <div class="profile-avatar">
     <app-avatar 
-      [src]="avatarSrc" 
+      [src]="'/assets/icons/profil.svg'"
+      [sizeAvatarContainer]="'180px'" 
+      [sizeAvatar]="'100px'"
       alt="Photo de profil">
     </app-avatar>
   </div>
@@ -49,4 +53,5 @@
       [value]="role">
     </app-input-field>
   </div>
+  
 </div>

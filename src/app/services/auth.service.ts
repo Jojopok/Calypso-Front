@@ -39,7 +39,6 @@ export class AuthService {
         console.warn('Aucun token trouvé dans le localStorage.');
         return null;
     }
-
     try {
         const decodedToken: any = jwtDecode(token); // Décoder le token JWT
         if (decodedToken?.sub) {

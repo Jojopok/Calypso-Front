@@ -3,11 +3,12 @@ import { AvatarComponent } from '../../atoms/avatar/avatar.component';
 import { InputFieldComponent } from '../../atoms/input-field/input-field.component';
 import { AuthService } from '../../../services/auth.service';
 import { UserService } from '../../../services/user.service';
+import { SubtitleComponent } from '../../atoms/subtitle/subtitle.component';
 
 @Component({
   selector: 'app-user-profile-section',
   standalone: true,
-  imports: [AvatarComponent, InputFieldComponent],
+  imports: [AvatarComponent, InputFieldComponent, SubtitleComponent],
   templateUrl: './user-profile-section.component.html',
   styleUrl: './user-profile-section.component.scss'
 })
@@ -50,5 +51,5 @@ export class UserProfileSectionComponent implements OnInit{
     } else {
         console.warn('Aucun ID utilisateur trouvé dans le token.');
     }
-}
+  }
 }

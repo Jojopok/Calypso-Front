@@ -1,3 +1,5 @@
+import { Promo } from "./promo";
+
 export interface User {
     id: number;
     firstName: string;
@@ -7,4 +9,7 @@ export interface User {
     odysseyLink?: string; 
     role: string;
     avatarUrl?: string;
+    promos: Promo[];
+
+    get fullName(): string;
 }

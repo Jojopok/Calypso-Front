@@ -9,7 +9,7 @@ import { AdminComponent } from './components/pages/admin/admin.component';
 
 export const appRoutes: Routes = [
   // Pages sans layout 
-  { path: '', component: LandingPageComponent }, // Page d'accueil
+  { path: '', component: LandingPageComponent }, // Page d'accueil/ connexion
   { path: 'register', component: RegisterPageComponent }, // Page d'inscription
 
   // Pages avec le layout principal
