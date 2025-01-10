@@ -14,7 +14,7 @@
     </div>
 
     <div class="promo-grid">
-      <app-user *ngFor="let member of promoMembers" [userName]="member.fullName" [avatarSrc]="member.avatarUrl"></app-user>
+      <app-user *ngFor="let member of promoMembers" [avatarSrc]="member.avatarUrl" [userName]="memberName"></app-user>
     </div>
   </div>
   

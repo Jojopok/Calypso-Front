@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, input, Input } from '@angular/core';
 
 @Component({
   selector: 'app-button',
@@ -11,4 +11,5 @@ import { Component, Input } from '@angular/core';
 export class ButtonComponent {
   @Input() label: string = '';
   @Input() buttonType: 'primary' | 'secondary' = 'primary';
+  @Input() type:'button' | 'submit' = 'button';
 }

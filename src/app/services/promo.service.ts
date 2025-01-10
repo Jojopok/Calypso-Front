@@ -8,7 +8,7 @@ import { User } from '../models/user';
   providedIn: 'root'
 })
 export class PromoService {
-  private apiUrl = 'http://localhost:8080/api/promos';  // URL de l'API pour récupérer les promos
+  private apiUrl = 'http://localhost:8080/promos';  // URL de l'API pour récupérer les promos
 
   constructor(private http: HttpClient) { }
 
@@ -23,7 +23,7 @@ export class PromoService {
   }
 
    // Méthode pour récupérer les membres de la promo par ID de promo
-   getPromoMembers(promoId: number): Observable<User[]> {
-    return this.http.get<User[]>(`${this.apiUrl}/promo/${promoId}/members`);
+  getPromoMembers(promoId: number): Observable<User[]> {
+    return this.http.get<User[]>(`${this.apiUrl}/${promoId}/members`);
   }
 }

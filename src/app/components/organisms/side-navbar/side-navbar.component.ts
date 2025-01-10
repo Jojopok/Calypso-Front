@@ -12,8 +12,6 @@ import { AuthService } from '../../../services/auth.service';
   styleUrl: './side-navbar.component.scss'
 })
 export class SideNavbarComponent {
-
-  constructor(private authService: AuthService) {}
   
   isCollapsed = false;
   @Output() toggle = new EventEmitter<boolean>();
@@ -33,13 +31,6 @@ export class SideNavbarComponent {
   footerItems = [
     { iconSrc: '/assets/icons/notification.svg', text: 'Notification', route: '/notification', isCollapsed: "isCollapsed" },
     { iconSrc: '/assets/icons/settings.svg', text: 'Informations', route: '/settings', isCollapsed: "isCollapsed" },
-    { iconSrc: '/assets/icons/logout.svg', text: 'Déconnexion', route: '/', isCollapsed: "isCollapsed",  action: () => this.logout()},
+    { iconSrc: '/assets/icons/logout.svg', text: 'Déconnexion',  isCollapsed: "isCollapsed" }
   ];
-
-  /**
-   * Méthode pour gérer la déconnexion
-   */
-  logout(): void {
-    this.authService.logout();
-  }
 }

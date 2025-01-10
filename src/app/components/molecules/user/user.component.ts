@@ -21,37 +21,19 @@ export class UserComponent {
 
   firstName: string = ''; 
   lastName: string = '';
+  currentUser!: User;
 
-  constructor(private userService: UserService,
-              private authService: AuthService
-  ) {}
+  constructor(private userService: UserService) {}
 
   ngOnInit(): void { 
-    if (!this.userName) {
-    this.populateUserInfo(); // Si userName n'est pas fourni, récupère depuis l'API
+    this.currentUser = this.userService.getUser()();
+     // Si un `userName` est fourni, on l'utilise, sinon on utilise les informations du `currentUser`
+    if (!this.userName || this.userName.trim() === '') {
+      this.populateUserInfo();
     }
   }
 
   private populateUserInfo(): void {
-    // Tenter de récupérer l'utilisateur depuis le token JWT
-    const userId = this.authService.getCurrentUserId();
-
-    if (userId) {
-        // Appel au backend pour récupérer toutes les informations utilisateur
-        this.userService.getUserById(userId).subscribe({
-            next: (userInfo) => {
-              
-                this.firstName = userInfo.firstName || '';
-                this.lastName = userInfo.lastName || '';
-                this.userName = `${this.firstName} ${this.lastName}`.trim(); 
-            },
-            error: (error) => {
-                console.error('Erreur lors de la récupération des informations utilisateur :', error);
-            }
-        });
-    } else {
-        console.warn('Aucun ID utilisateur trouvé dans le token.');
-    }
+    this.userName = `${this.currentUser.firstName} ${this.currentUser.lastName}`;
   }
-  
 }

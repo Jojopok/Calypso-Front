@@ -10,6 +10,4 @@ export interface User {
     role: string;
     avatarUrl?: string;
     promos: Promo[];
-
-    get fullName(): string;
 }

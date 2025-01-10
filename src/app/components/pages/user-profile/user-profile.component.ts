@@ -29,23 +29,7 @@ export class UserProfileComponent {
   constructor(private userService: UserService, private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.getUserPromos();
+    this.currentUser = this.userService.getUser()();
   }
 
-  // Fonction pour récupérer les promos de l'utilisateur
-  private getUserPromos(): void {
-    this.userId = this.authService.getCurrentUserId();
-    console.log('Id de l\'utilisateur:', this.userId); 
-    if(this.userId) {
-      this.userService.getUserById(this.userId).subscribe({
-        next: (user: User) => {
-          this.currentUser = user;
-          console.log('Utilisateur récupéré:', user);
-        },
-        error: (error) => {
-          console.error('Erreur lors de la récupération de l\'utilisateur:', error);
-        }
-      });
-    }
-  }
 }

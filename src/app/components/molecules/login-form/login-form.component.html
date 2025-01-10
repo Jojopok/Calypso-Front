@@ -4,7 +4,7 @@
   <app-input-field label="Votre adresse mail :" fieldId="email" type="email" formControlName="email"></app-input-field>
   <app-input-field label="Mot de passe :" fieldId="password" type="password" formControlName="password"></app-input-field>
   <a class="info-text" href="#">Mot de passe oublié ?</a>
-  <app-button label="SE CONNECTER" buttonType="primary" (click)="onSubmit()"></app-button>
+  <app-button label="SE CONNECTER" type="submit" buttonType="primary" (click)="onSubmit()"></app-button>
   <app-button label="S'ENREGISTRER" buttonType="secondary" [routerLink]="['/register']"></app-button>
 </div>
 
