@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { jwtDecode } from 'jwt-decode'; 
+import { jwtDecode } from 'jwt-decode';
 import { User } from '../models/user';
 
 @Injectable({
@@ -15,7 +15,7 @@ export class AuthService {
 
   // Méthode pour authentifier l'utilisateur et stocker le token JWT
   login(credentials: { username: string; password: string }): Observable<any> {
-    return this.http.post(this.apiUrl, credentials);
+    return this.http.post(`${this.apiUrl}/login`, credentials);
   }
 
   // Stocker le token dans le stockage local
@@ -30,7 +30,7 @@ export class AuthService {
       try {
         const decodedToken: any = jwtDecode(token); // Appel de la fonction `jwtDecode`
         console.log(decodedToken)
-        return decodedToken?.userId || null; 
+        return decodedToken?.userId || null;
       } catch (error) {
         console.error('Erreur lors du décodage du token JWT', error);
         return null;
