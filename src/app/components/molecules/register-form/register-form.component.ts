@@ -32,7 +32,7 @@ export class RegisterFormComponent {
       this.authService.register(formData).subscribe({
         next: () => {
           console.log('Inscription réussie !');
-          this.router.navigate(['/home']);
+          this.router.navigate(['/']);
         },
         error: (err) => {
           console.error('Erreur lors de l\'inscription :', err);

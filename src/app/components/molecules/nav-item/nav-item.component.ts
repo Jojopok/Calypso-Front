@@ -15,5 +15,5 @@ export class NavItemComponent {
   @Input() isCollapsed: boolean = false; 
   @Input() iconSrc!: string; 
   @Input() text: string | undefined;   
-  @Input() route!: string;   
+  @Input() route: string | undefined;   
 }

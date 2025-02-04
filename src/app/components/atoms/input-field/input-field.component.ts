@@ -19,9 +19,9 @@ export class InputFieldComponent implements ControlValueAccessor {
   @Input() type: string = 'text';
   @Input() placeholder: string = '';
   @Input() fieldId: string = '';
-
-  // Valeur actuelle du champ d'entrée
-  value: string = '';
+  @Input() value: string = '';
+  @Input() isRequired: boolean = false;
+  @Input() isDisabled: boolean = false;
 
   // Méthodes pour la gestion des changements et des touches
   onChange = (value: string) => {};

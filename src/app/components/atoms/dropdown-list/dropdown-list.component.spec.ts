@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PromoCardComponent } from './promo-card.component';
+import { DropdownListComponent } from './dropdown-list.component';
 
-describe('PromoCardComponent', () => {
-  let component: PromoCardComponent;
-  let fixture: ComponentFixture<PromoCardComponent>;
+describe('DropdownListComponent', () => {
+  let component: DropdownListComponent;
+  let fixture: ComponentFixture<DropdownListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PromoCardComponent]
+      imports: [DropdownListComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(PromoCardComponent);
+    fixture = TestBed.createComponent(DropdownListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

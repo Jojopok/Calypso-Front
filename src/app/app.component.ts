@@ -8,7 +8,7 @@ import { LandingPageComponent } from './components/pages/landing-page/landing-pa
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [HttpClientModule, RouterOutlet, UserProfileComponent, LandingPageComponent],
+  imports: [HttpClientModule, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

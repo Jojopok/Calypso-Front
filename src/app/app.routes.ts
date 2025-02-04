@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { MainLayoutComponent } from './components/layout/main-layout/main-layout.component';
+import { MainLayoutComponent } from './components/templates/main-layout/main-layout.component';
 import { LandingPageComponent } from './components/pages/landing-page/landing-page.component';
 import { RegisterPageComponent } from './components/pages/register-page/register-page.component';
 import { UserProfileComponent } from './components/pages/user-profile/user-profile.component';
@@ -9,7 +9,7 @@ import { AdminComponent } from './components/pages/admin/admin.component';
 
 export const appRoutes: Routes = [
   // Pages sans layout 
-  { path: '', component: LandingPageComponent }, // Page d'accueil
+  { path: '', component: LandingPageComponent }, // Page d'accueil/ connexion
   { path: 'register', component: RegisterPageComponent }, // Page d'inscription
 
   // Pages avec le layout principal

@@ -2,13 +2,20 @@
 
 // Style principal pour la section de profil
 .user-profile-section {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: $background-color;
+  position: relative;
+  background-color: $background-color-form;
   padding: $spacing-unit * 2;
   border-radius: $border-radius;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+
+  app-subtitle {
+    position: absolute;
+  }
+
+  .user-info {
+    display: flex;
+  }
 
   .profile-info,
   .additional-info {
@@ -16,6 +23,7 @@
     flex-direction: column;
     gap: $spacing-unit * 2;
     flex: 1;
+    width: 100%;
   }
 
   .profile-avatar {

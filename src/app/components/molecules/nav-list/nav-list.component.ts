@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { NavItemComponent } from '../nav-item/nav-item.component';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-list',
@@ -10,6 +12,19 @@ import { CommonModule } from '@angular/common';
   styleUrl: './nav-list.component.scss'
 })
 export class NavListComponent {
-  @Input() items: { iconSrc: string; text?: string; route: string }[] = [];
+  @Input() items: { iconSrc: string; text?: string; route?: string }[] = [];
   @Input() isCollapsed = false; 
+  
+  constructor(private authService: AuthService,
+              private router: Router
+  ) {}
+  
+  /**
+   * Méthode pour gérer la déconnexion
+   */
+  logout(): void {
+    console.log('Déconnexion en cours...');
+    this.authService.logout();
+    this.router.navigate(['/login']);
+  }
 }

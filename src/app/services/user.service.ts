@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal, Signal } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../models/user';
@@ -7,15 +7,17 @@ import { User } from '../models/user';
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = 'http://localhost:8080/users'; // URL de l'API du back-end
+  private apiUrl = 'http://localhost:8080/users';
+  private userSignal = signal<User | null>(null);
 
   constructor(private http: HttpClient) {}
 
-  getUserById(id: number): Observable<User> {
-    return this.http.get<User>(`${this.apiUrl}/${id}`);
+  getUser(): Signal<User> {
+    // On utilise un cast car on a déjà vérifié que la valeur n'est pas null
+    return signal(this.userSignal() as User);
   }
 
-  getCurrentUser(): Observable<User> {
-    return this.http.get<User>(`${this.apiUrl}/current`);
+  setUser(user: User): void {
+    this.userSignal.set(user);
   }
 }
