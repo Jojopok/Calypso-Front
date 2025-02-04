@@ -17,7 +17,7 @@ export class UserComponent {
   @Input() avatarSrc?: string; 
   @Input() altText!: string;   
   @Input() isCollapsed: boolean = false; 
-  @Input() userName: string = ''
+  @Input() userName!: string;
 
   firstName: string = ''; 
   lastName: string = '';

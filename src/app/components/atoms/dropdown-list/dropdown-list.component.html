@@ -1,12 +1,12 @@
 <div class="dropdown-container" (click)="isOpen = !isOpen">
     <div class="dropdown-box">
-      <span>{{ selectedValue || placeholder }}</span>   <!-- Affiche la valeur sélectionnée ou le placeholder -->
+      <span>{{ selectedValue || placeholder }}</span>
       <i class="arrow" [class.open]="isOpen" class="fas fa-chevron-down"></i>
     </div>
   
     <div class="dropdown-list" *ngIf="isOpen">
       <div *ngFor="let option of options" class="dropdown-option" (click)="onSelect(option)">
-        {{ option.name || option }}   <!-- Si option est un objet, afficher `option.name` -->
+        {{ option.name || option }}
       </div>
     </div>
   </div>

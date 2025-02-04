@@ -7,7 +7,7 @@ import { User } from '../models/user';
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = 'http://localhost:8080/users'; // URL de l'API du back-end
+  private apiUrl = 'http://localhost:8080/users';
   private userSignal = signal<User | null>(null);
 
   constructor(private http: HttpClient) {}
@@ -18,15 +18,6 @@ export class UserService {
   }
 
   setUser(user: User): void {
-      this.userSignal.set(user);
-  }
-
-  // Méthode pour récupérer le profil de l'utilisateur avec le token dans l'en-tête
-  GetCurrentProfil(token: string): Observable<User> {
-    // Créer les en-têtes HTTP avec le token d'authentification
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-
-    // Effectuer la requête GET avec les en-têtes
-    return this.http.get<User>(`${this.apiUrl}/profil`, { headers });
+    this.userSignal.set(user);
   }
 }

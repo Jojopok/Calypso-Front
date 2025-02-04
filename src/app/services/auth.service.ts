@@ -38,16 +38,18 @@ export class AuthService {
     localStorage.setItem(this.tokenKey, token);
   }
 
-  getProfil(): Observable<User> {
-    return this.userService.GetCurrentProfil(this.tokenKey).pipe(
-        tap((response: User) => {
-            this.userService.setUser({
-                ...this.userService.getUser()(),
-                ...response,
-            });
-        }),
+   // Méthode pour récupérer le profil de l'utilisateur avec le token dans l'en-tête
+  getCurrentProfil(): Observable<User> {
+    // Effectuer la requête GET avec les en-têtes
+    return this.http.get<User>(`${this.apiUrl}/profil`).pipe(
+      tap((response: User) => {
+          this.userService.setUser({
+            ...this.userService.getUser()(),
+            ...response
+          });
+      }),
     );
-}
+  }
   
   // Vérifier si l'utilisateur est authentifié
   isAuthenticated(): boolean {
@@ -62,7 +64,6 @@ export class AuthService {
   }
 
   register(user: User): Observable<any> {
-    console.log(user);
     return this.http.post(`${this.apiUrl}/register`, user);
   }
 }

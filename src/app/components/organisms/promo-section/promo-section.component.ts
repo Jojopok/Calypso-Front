@@ -30,27 +30,26 @@ export class PromoSectionComponent implements OnInit{
   ngOnInit(): void { 
     this.currentUser = this.userService.getUser()();
     this.selectedPromo = this.currentUser.promos[0];
-    this.getPromoMembers(this.selectedPromo.id);
+    this.getPromoMembers();
     
   }
 
-getPromoMembers(promoId: number): void {
-  promoId = this.selectedPromo.id;
-  this.promoService.getPromoMembers(promoId).subscribe({
-    next: (members) => {
-      this.promoMembers = members.map(member => ({
-        ...member,  
-        memberName: `${member.firstName} ${member.lastName}`
-      }));
-    },
-    error: (error) => {
-        console.error('Error fetching promo members:', error);
-    }
-  });
-}
+  getPromoMembers(): void {
+    this.promoService.getPromoMembers(this.selectedPromo.id).subscribe(
+      (members: User[]) => {
+        this.promoMembers = members.map((member) => {
+          // Calculer `fullName` à partir de `firstName` et `lastName`
+          const fullName = `${member.firstName} ${member.lastName}`;
+          return { ...member, fullName }; // Ajouter `fullName` calculé à chaque membre
+        });
+      },
+      (error) => {
+          console.error('Error fetching promo members:', error);
+      }
+    );
+  }
 
   onPromoSelect(promoId: number): void {
     this.selectedPromo.id = promoId;
   }
-
 }

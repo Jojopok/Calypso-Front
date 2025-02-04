@@ -8,10 +8,9 @@ function initializeUser(
 ): () => (() => void) | Observable<void | User> {
     return () => {
         // Utilisation de localStorage pour récupérer le token
-        const authToken = localStorage.getItem('authToken'); 
-
+        const authToken = localStorage.getItem('authToken');
         if (authToken) {
-            return authService.getProfil().pipe(
+            return authService.getCurrentProfil().pipe(
                 catchError(() => {
                     return of(noop());
                 }),
