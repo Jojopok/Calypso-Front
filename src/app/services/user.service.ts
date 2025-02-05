@@ -1,7 +1,8 @@
 import { Injectable, signal, Signal } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import { User } from '../models/user';
+import { UserUpdateDTO } from '../models/userUpdateDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -19,5 +20,10 @@ export class UserService {
 
   setUser(user: User): void {
     this.userSignal.set(user);
+  }
+
+  // Méthode pour mettre à jour un utilisateur
+  updateUser(updatedUser: UserUpdateDTO, userId: number): Observable<User> {
+    return this.http.put(`${this.apiUrl}/${userId}`, updatedUser).pipe(tap((user: any) => {this.setUser(user)})); // Mettre à jour l'utilisateur avec ses nouvelles infos
   }
 }

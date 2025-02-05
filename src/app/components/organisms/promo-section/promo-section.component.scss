@@ -1,33 +1,5 @@
 @import '../../../../styles/variables';
 
 .promo-section {
-    display: flex;
-    position: relative;
-    justify-content: space-between;
-    align-items: center;
     background-color: $background-color-form;
-    padding: $spacing-unit * 2;
-    border-radius: $border-radius;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin: 20px;
-    height: 300px;
-}
-
-app-subtitle {
-    position: absolute;
-}
-
-.promo-header {
-    position: absolute;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    top: 5%;
-}
-  
-.promo-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    gap: 20px;
-    justify-items: center;
 }
