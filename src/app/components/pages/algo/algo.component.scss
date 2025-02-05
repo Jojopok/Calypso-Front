@@ -1,0 +1,12 @@
+@import '../../../../styles/variables';
+
+.footer {
+  display: flex;
+  justify-content: center;
+  margin-top: $spacing-unit * 2;
+
+  app-button {
+    width: 100%; // S'adapte à la largeur ou autre personnalisation
+    max-width: 300px;
+  }
+}

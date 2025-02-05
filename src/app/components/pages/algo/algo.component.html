@@ -1,1 +1,14 @@
-<p>algo works!</p>
+<app-filter-bar
+  (search)="handleSearch($event)"
+  (categorySelect)="handleCategorySelect($event)"
+  (completedToggle)="handleCompletedToggle($event)">
+</app-filter-bar>
+
+<app-algo-grid [algos]="filteredAlgos"></app-algo-grid>
+
+<div class="footer">
+  <app-button
+    label="MES ALGORITHMES"
+    buttonType="primary">
+  </app-button>
+</div>

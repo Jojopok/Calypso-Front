@@ -1,0 +1,7 @@
+@import '../../../../styles/variables';
+
+.search-bar {
+  display: flex;
+  gap: $spacing-unit;
+  align-items: center;
+}

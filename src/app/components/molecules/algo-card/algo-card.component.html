@@ -1,0 +1,16 @@
+<div
+  class="card"
+  [ngClass]="cardClasses">
+  <div class="card-body">
+    <div class="d-flex align-items-center mb-3">
+      <img
+        [src]="iconSrc"
+        [alt]="title"
+        class="me-2"
+        [ngStyle]="{'width': iconSize + 'px', 'height': iconSize + 'px'}">
+      <h5 class="card-title mb-0">{{ title }}</h5>
+    </div>
+    <p class="card-text">{{ description }}</p>
+  </div>
+  <div class="card-footer" [ngStyle]="{'background-color': footerColor}"></div>
+</div>

@@ -1,0 +1,14 @@
+<div class="input-group">
+  <app-input-field
+    fieldId="search"
+    [placeholder]="placeholder"
+    [value]="searchQuery">
+  </app-input-field>
+  <button
+    type="button"
+    class="btn btn-primary"
+    [ngClass]="buttonClasses"
+    (click)="onSearchClick()">
+    {{ buttonLabel }}
+  </button>
+</div>
