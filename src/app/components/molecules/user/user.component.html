@@ -1,4 +1,4 @@
-<div class="user">
-    <app-avatar [src]="avatarSrc" [alt]="altText"></app-avatar>
-    <app-text *ngIf="!isCollapsed" [text]="userName" class="user-name"></app-text>
+<div class="user d-flex">
+    <app-avatar class="m-2"[src]="avatarSrc" [alt]="altText"></app-avatar>
+    <app-text *ngIf="!isCollapsed" [text]="userName" class="d-flex align-items-center ms-2"></app-text>
 </div>
