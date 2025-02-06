@@ -3,6 +3,7 @@ import {SearchBarComponent} from "../../molecules/search-bar/search-bar.componen
 import {DropdownListComponent} from "../../atoms/dropdown-list/dropdown-list.component";
 import {CheckboxToggleComponent} from "../../atoms/checkbox-toggle/checkbox-toggle.component";
 
+
 @Component({
   selector: 'app-filter-bar',
   standalone: true,
@@ -15,10 +16,12 @@ import {CheckboxToggleComponent} from "../../atoms/checkbox-toggle/checkbox-togg
   styleUrl: './filter-bar.component.scss'
 })
 export class FilterBarComponent {
-  @Input() categories: any[] = [];
+  categories: any[] = []; // Plus besoin de @Input(), on récupère via le service
   @Output() search = new EventEmitter<string>();
   @Output() categorySelect = new EventEmitter<string>();
   @Output() completedToggle = new EventEmitter<boolean>();
+
+  constructor() {}
 
   onSearch(query: string) {
     this.search.emit(query);
