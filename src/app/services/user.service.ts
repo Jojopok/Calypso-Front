@@ -22,8 +22,13 @@ export class UserService {
     this.userSignal.set(user);
   }
 
+  getAllUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.apiUrl);
+  }
+
   // Méthode pour mettre à jour un utilisateur
   updateUser(updatedUser: UserUpdateDTO, userId: number): Observable<User> {
     return this.http.put(`${this.apiUrl}/${userId}`, updatedUser).pipe(tap((user: any) => {this.setUser(user)})); // Mettre à jour l'utilisateur avec ses nouvelles infos
   }
+
 }

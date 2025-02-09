@@ -1,8 +1,8 @@
 <div class="promo-section ms-3 me-3 pb-5 rounded">
     <div class="promo-header d-flex ms-5">
         <app-subtitle class="mt-4" [text]="'Ma promo'" [fontSize]="'1.5em'"></app-subtitle>
-        <app-dropdown-list class="mt-3"
-            [options]="promoList"
+        <app-dropdown-list class="m-3"
+            [options]="promoListName"
             [selectedValue]="selectedPromo.name"
             placeholder="Sélectionnez une promo"
             (valueSelected)="onPromoSelect($event)">

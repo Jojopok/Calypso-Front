@@ -1,1 +1,13 @@
-<p>admin-users works!</p>
+<div class="page w-100 h-100 row p-4">
+    <app-admin-filter-bar class="col-12" (yearChanged)="onYearChanged($event)" (toggleChanged)="onToggleChanged($event)" (searchChanged)="onSearchChanged($event)">
+    </app-admin-filter-bar>
+    <app-user-card *ngFor="let user of filteredUsers" 
+        class="col-2"
+        [userName]="user.fullName" 
+        [userAvatar]="user.avatarUrl" 
+        [userPromoName]="user.promos[0].name" 
+        [userPromoType]="user.promos[0].type"
+        [userPromoYear]="user.promos[0].beginAt"
+        [userRole]="user.roles[0]">
+    </app-user-card>
+</div>
