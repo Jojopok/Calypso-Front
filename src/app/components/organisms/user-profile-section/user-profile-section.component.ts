@@ -49,7 +49,7 @@ export class UserProfileSectionComponent implements OnInit {
     this.phoneNumber = this.currentUser.phoneNumber || '';
     this.email = this.currentUser.email || '';
     this.odysseyLink = this.currentUser.odysseyLink || '';
-    this.role = this.currentUser.role || '';
+    this.role = this.currentUser.roles[0] || '';
   }
 
   // Méthode pour mettre à jour les données de l'utilisateur

@@ -9,7 +9,7 @@ import { Component, Input } from '@angular/core';
   styleUrl: './text.component.scss'
 })
 export class TextComponent {
-  @Input() text: string = '';
+  @Input() text: string | number = '';
   @Input() color: string = 'white';
   @Input() fontSize: string = '1rem';
 }

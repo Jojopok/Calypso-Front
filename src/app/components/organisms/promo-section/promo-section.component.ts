@@ -19,6 +19,7 @@ import { PromoService } from '../../../services/promo.service';
 export class PromoSectionComponent implements OnInit{
   @Input() selectedPromo!: Promo;
   @Input() promoList: Promo[] = [];
+  promoListName: string[] = [];
   promoMembers: User[] = []; 
   currentUser!: User;
   memberName: string = '';
@@ -30,8 +31,13 @@ export class PromoSectionComponent implements OnInit{
   ngOnInit(): void { 
     this.currentUser = this.userService.getUser()();
     this.selectedPromo = this.currentUser.promos[0];
+    this.loadPromoList();
     this.getPromoMembers();
     
+  }
+
+  loadPromoList(): void {
+    this.promoListName = this.promoList.map(promo => promo.name);
   }
 
   getPromoMembers(): void {
