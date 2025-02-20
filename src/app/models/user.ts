@@ -7,7 +7,7 @@ export class User {
     phoneNumber?: string;
     email: string;
     odysseyLink?: string;
-    role: string;
+    roles: string[];
     avatarUrl?: string;
     promos: Promo[];
     fullName: string;
@@ -17,14 +17,14 @@ export class User {
         firstName: string,
         lastName: string,
         email: string,
-        role: string,
+        roles: string[],
         promos: Promo[]
     ) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.role = role;
+        this.roles = roles;
         this.promos = promos;
         this.fullName = '';
     }

@@ -1,11 +1,11 @@
-<div class="login-form" [formGroup]="loginForm">
+<div class="login-form z-4 p-4 rounded d-flex flex-column w-75 mx-auto my-0 align-items-center"  [formGroup]="loginForm">
   <app-title text="BIENVENUE"></app-title>
-  <app-text [style.margin-bottom]="'26px'"text="Connectez-vous dès maintenant pour découvrir une plateforme unique centralisant toutes vos cérémonies et réunions professionnelles"></app-text>
-  <app-input-field label="Votre adresse mail :" fieldId="email" type="email" formControlName="email"></app-input-field>
-  <app-input-field label="Mot de passe :" fieldId="password" type="password" formControlName="password"></app-input-field>
-  <a class="info-text" href="#">Mot de passe oublié ?</a>
-  <app-button label="SE CONNECTER" type="submit" buttonType="primary" (click)="onSubmit()"></app-button>
-  <app-button label="S'ENREGISTRER" buttonType="secondary" [routerLink]="['/register']"></app-button>
+  <app-text class="text-center mb-2" text="Connectez-vous dès maintenant pour découvrir une plateforme unique centralisant toutes vos cérémonies et réunions professionnelles"></app-text>
+  <app-input-field class="w-75 m-3" label="Votre adresse mail :" fieldId="email" type="email" formControlName="email"></app-input-field>
+  <app-input-field class="w-75"label="Mot de passe :" fieldId="password" type="password" formControlName="password"></app-input-field>
+  <a class="m-3" href="#">Mot de passe oublié ?</a>
+  <app-button class="text-light mb-2" label="SE CONNECTER" type="submit" buttonType="primary" (click)="onSubmit()"></app-button>
+  <app-button class="text-light" label="S'ENREGISTRER" buttonType="secondary" [routerLink]="['/register']"></app-button>
 </div>
 
   

@@ -1,12 +1,7 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import {SearchBarComponent} from "../../molecules/search-bar/search-bar.component";
 import {DropdownListComponent} from "../../atoms/dropdown-list/dropdown-list.component";
 import {CheckboxToggleComponent} from "../../atoms/checkbox-toggle/checkbox-toggle.component";
-import {query} from "@angular/animations";
-import {TypeService} from "../../../services/type.service";
-// @ts-ignore
-import { Type } from '../../models/type'; // Import du modèle Type
-
 
 @Component({
   selector: 'app-filter-bar',
@@ -19,33 +14,13 @@ import { Type } from '../../models/type'; // Import du modèle Type
   templateUrl: './filter-bar.component.html',
   styleUrl: './filter-bar.component.scss'
 })
-
-  export class FilterBarComponent implements OnInit {
-  categories: { name: string }[] = []; // ✅ Format attendu par DropdownListComponent
+export class FilterBarComponent {
+  categories: any[] = []; // Plus besoin de @Input(), on récupère via le service
   @Output() search = new EventEmitter<string>();
   @Output() categorySelect = new EventEmitter<string>();
   @Output() completedToggle = new EventEmitter<boolean>();
 
-  constructor(private typeService: TypeService) {}
-
-  ngOnInit(): void {
-    this.loadCategories();
-  }
-
-  loadCategories(): void {
-    this.typeService.getTypes().subscribe(
-      (types: Type[]) => {
-        this.categories = types.map(type => ({
-          name: type.type,
-        }));
-
-        console.log('Catégories récupérées après mapping:', this.categories);
-      },
-      (error) => {
-        console.error('Erreur lors de la récupération des catégories:', error);
-      }
-    );
-  }
+  constructor() {}
 
   onSearch(query: string) {
     this.search.emit(query);
@@ -58,6 +33,4 @@ import { Type } from '../../models/type'; // Import du modèle Type
   onCompletedToggle(isCompleted: boolean) {
     this.completedToggle.emit(isCompleted);
   }
-
-
 }

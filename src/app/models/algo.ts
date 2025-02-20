@@ -9,7 +9,7 @@ export interface Algo {
   isVisible: string;
   createdAt: number;
   updatedAt: number;
-  diffuculty: string;
+  difficulty: string;
   type: Type[];
   user: User[];
 

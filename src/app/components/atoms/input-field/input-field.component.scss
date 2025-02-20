@@ -1,10 +1,5 @@
 @import '../../../../styles/variables';
 
-.custom-input-container {
-  position: relative;
-  margin-bottom: $spacing-unit;
-}
-
 .custom-label {
   position: absolute;
   top: -10px;
@@ -18,26 +13,8 @@
 }
 
 .custom-input {
-  width: 100%;
-  padding: 12px;
-  padding-top: 18px;
   border: 1px solid $border-color;
-  border-radius: $border-radius;
   background-color: transparent;
   color: $text-color;
-  outline: none;
   font-size: $font-size-base;
-  transition: border-color 0.3s ease-in-out;
-
-  &:focus {
-    border-color: $primary-color;
-  }
-
-  &:focus + .custom-label,
-  &:not(:placeholder-shown) + .custom-label {
-    top: -20px;
-    left: 8px;
-    font-size: $font-size-small;
-    color: $primary-color;
-  }
 }

@@ -1,4 +1,5 @@
-<label class="checkbox-toggle">
-  <input type="checkbox" [checked]="isChecked" (change)="onToggle($event)">
-  <span class="toggle-label">{{ label }}</span>
-</label>
+<div class="d-flex align-items-center g-2 form-switch form-check">
+    <input class="me-2 form-check-input" type="checkbox" [checked]="isChecked" (change)="onToggle($event)">
+    <label class="text-light">{{ label }}</label>
+</div>
+

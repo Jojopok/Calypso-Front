@@ -1,5 +1,6 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input, ViewEncapsulation, forwardRef } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-input-field',
@@ -11,6 +12,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
       multi: true
     }
   ],
+  imports:[CommonModule, FormsModule],
   templateUrl: './input-field.component.html',
   styleUrls: ['./input-field.component.scss']
 })

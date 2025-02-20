@@ -6,6 +6,8 @@ import { UserProfileComponent } from './components/pages/user-profile/user-profi
 import { HomePageComponent } from './components/pages/home-page/home-page.component';
 import { AlgoComponent } from './components/pages/algo/algo.component';
 import { AdminComponent } from './components/pages/admin/admin.component';
+import { AdminUsersComponent } from './components/pages/admin-users/admin-users.component';
+import { BugComponent } from './components/pages/bug/bug.component';
 
 export const appRoutes: Routes = [
   // Pages sans layout 
@@ -21,6 +23,8 @@ export const appRoutes: Routes = [
       { path: 'profil', component: UserProfileComponent }, // Page de profil utilisateur
       { path: 'algo', component: AlgoComponent }, // Page algorithme
       { path: 'admin', component: AdminComponent }, // Page administrateur
+      { path: 'droits', component: AdminUsersComponent }, // Page d'amdinistration des utilisateurs
+      { path: 'bug', component: BugComponent }, // Page d'amdinistration des bugs
     ],
   },
 

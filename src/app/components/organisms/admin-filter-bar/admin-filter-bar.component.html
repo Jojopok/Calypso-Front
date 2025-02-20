@@ -1,0 +1,8 @@
+<div class="d-flex align-items-center gap-3">
+  <app-search-bar class="col-4" (search)="onSearch($event)"></app-search-bar>
+  <app-dropdown-list class="col-1" [options]="promoDates" placeholder="Année" (valueSelected)="onYearSelect($event)"></app-dropdown-list>
+  <app-checkbox-toggle class="col-1" label="Admin" (toggle)="onAdminToggle($event)"></app-checkbox-toggle>
+  <app-checkbox-toggle class="col-1" label="Editeur" (toggle)="onEditeurToggle($event)"></app-checkbox-toggle>
+  <app-checkbox-toggle class="col-1" label="Wilder" (toggle)="onWilderToggle($event)"></app-checkbox-toggle>
+</div>
+

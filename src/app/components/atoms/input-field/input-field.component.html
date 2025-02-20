@@ -1,7 +1,7 @@
-<div class="custom-input-container">
-  <label [for]="fieldId" class="custom-label">{{ label }}</label>
+<div class="custom-input-container position-relative">
+  <label [for]="fieldId" class="custom-label position-absolute">{{ label }}</label>
   <input 
-  class="custom-input"
+  class="custom-input rounded p-3 w-100 "
   [id]="fieldId" 
   [type]="type"  
   [placeholder]="placeholder"
