@@ -1,12 +1,17 @@
 @import '../../../../styles/variables';
 
+.algo-page {
+  background-color: $background-color;
+  min-height: 100vh;
+}
+
 .footer {
   display: flex;
   justify-content: center;
   margin-top: $spacing-unit * 2;
 
   app-button {
-    width: 100%; // S'adapte à la largeur ou autre personnalisation
+    width: 100%;
     max-width: 300px;
   }
 }

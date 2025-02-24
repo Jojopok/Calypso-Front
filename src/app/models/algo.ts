@@ -1,17 +1,15 @@
-import {Type} from "./type";
-import {User} from "./user";
+import { Type } from "./type"; // 🔥 Import du modèle Type
+import { Difficulty } from "./difficulty"; // 🔥 Import du modèle Difficulty
 
 export interface Algo {
   id: number;
   title: string;
   content: string;
   answer: string;
-  isVisible: string;
-  createdAt: number;
-  updatedAt: number;
-  difficulty: string;
-  type: Type[];
-  user: User[];
-
-
+  isVisible: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+  difficulty: Difficulty;
+  types: Type[];
+  userId: number;
 }
