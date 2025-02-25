@@ -1,0 +1,9 @@
+<div class="nav-list">
+    <app-nav-item *ngFor="let item of items" 
+                  [iconSrc]="item.iconSrc" 
+                  [text]="!isCollapsed ? item.text : undefined" 
+                  [route]="item.route"
+                  (click)="item.text === 'Déconnexion' ? logout() : null">
+    </app-nav-item>
+  </div>
+  

@@ -1,5 +1,6 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input, ViewEncapsulation, forwardRef } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-input-field',
@@ -11,18 +12,18 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
       multi: true
     }
   ],
+  imports:[CommonModule, FormsModule],
   templateUrl: './input-field.component.html',
-  styleUrls: ['./input-field.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./input-field.component.scss']
 })
 export class InputFieldComponent implements ControlValueAccessor {
   @Input() label: string = '';
   @Input() type: string = 'text';
   @Input() placeholder: string = '';
   @Input() fieldId: string = '';
-
-  // Valeur actuelle du champ d'entrée
-  value: string = '';
+  @Input() value: string = '';
+  @Input() isRequired: boolean = false;
+  @Input() isDisabled: boolean = false;
 
   // Méthodes pour la gestion des changements et des touches
   onChange = (value: string) => {};

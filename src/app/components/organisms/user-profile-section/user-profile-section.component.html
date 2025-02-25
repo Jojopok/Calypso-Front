@@ -1,15 +1,64 @@
-<div class="user-profile-section">
-  <div class="profile-info">
-    <app-input-field label="Prénom" [placeholder]="firstNamePlaceholder"></app-input-field>
-    <app-input-field label="Nom" [placeholder]="lastNamePlaceholder"></app-input-field>
-    <app-input-field label="Numéro de téléphone" [placeholder]="phoneNumberPlaceholder"></app-input-field>
-  </div>
-  <div class="profile-avatar">
-    <app-avatar [src]="avatarSrc" alt="Photo de profil"></app-avatar>
-  </div>
-  <div class="additional-info">
-    <app-input-field label="Adresse email" [placeholder]="emailPlaceholder"></app-input-field>
-    <app-input-field label="Profil odyssey" [placeholder]="odysseyProfilePlaceholder"></app-input-field>
-    <app-input-field label="Mon rôle" [placeholder]="rolePlaceholder"></app-input-field>
+<div class="user-profile-section ms-3 me-3 pb-5 rounded">
+  <app-subtitle class="d-flex ms-5 pt-4" [text]="'A propos de moi'" [fontSize]="'1.5em'"></app-subtitle>
+  
+  <div class="user-info d-flex justify-content-center">
+    <!-- Informations générales -->
+    <div class="profile-info d-flex row m-2">
+      <app-input-field 
+        label="Prénom" 
+        placeholder="Prénom" 
+        [value]="firstName"  
+        (input)="onUserChange($event, 'firstName')">  
+      </app-input-field>
+
+      <app-input-field 
+        label="Nom" 
+        placeholder="Nom" 
+        [value]="lastName"
+        (input)="onUserChange($event, 'lastName')">
+      </app-input-field>
+
+      <app-input-field 
+        label="Numéro de téléphone" 
+        placeholder="Numéro de téléphone" 
+        [value]="phoneNumber"
+        (input)="onUserChange($event, 'phoneNumber')">
+      </app-input-field>
+    </div>
+
+    <!-- Avatar -->
+    
+      <app-avatar 
+      class="m-4"
+        [src]="'/assets/icons/profil.svg'"
+        [sizeAvatarContainer]="'180px'" 
+        [sizeAvatar]="'100px'"
+        alt="Photo de profil">
+      </app-avatar>
+    
+
+    <!-- Informations complémentaires -->
+    <div class="additional-info d-flex row m-2">
+      <app-input-field 
+        label="Adresse email" 
+        placeholder="Email" 
+        [value]="email"
+        (input)="onUserChange($event, 'email')">
+      </app-input-field>
+
+      <app-input-field 
+        label="Profil odyssey" 
+        placeholder="Lien du profil Odyssey" 
+        [value]="odysseyLink"
+        (input)="onUserChange($event, 'odysseyLink')">
+      </app-input-field>
+
+      <app-input-field 
+        label="Mon rôle" 
+        placeholder="" 
+        [isDisabled]="true" 
+        [value]="role">
+      </app-input-field>
+    </div>
   </div>
 </div>

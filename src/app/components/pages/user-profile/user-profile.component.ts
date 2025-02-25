@@ -7,6 +7,8 @@ import { AvatarComponent } from '../../atoms/avatar/avatar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UserProfileSectionComponent } from '../../organisms/user-profile-section/user-profile-section.component';
 import { InputFieldComponent } from '../../atoms/input-field/input-field.component';
+import { PromoSectionComponent } from "../../organisms/promo-section/promo-section.component";
+import { Promo } from '../../../models/promo';
 
 
 @Component({
@@ -15,49 +17,19 @@ import { InputFieldComponent } from '../../atoms/input-field/input-field.compone
   styleUrls: ['./user-profile.component.scss'],
   standalone: true,
   providers: [HttpClientModule],
-  imports: [ReactiveFormsModule, UserProfileSectionComponent, InputFieldComponent, AvatarComponent]
+  imports: [ReactiveFormsModule, UserProfileSectionComponent, PromoSectionComponent]
 
 })
-export class UserProfileComponent implements OnInit {
-  userForm: FormGroup;
-  userAvatarUrl: string = ''; // URL de l'avatar utilisateur
+export class UserProfileComponent {
+  promoMembers: User[] = [];
+  selectedPromo!: Promo; 
+  userId!: number | null; 
+  currentUser!: User;
 
-  constructor(
-    private fb: FormBuilder,
-    private userService: UserService,
-    private authService: AuthService
-  ) {
-    this.userForm = this.fb.group({
-      firstName: [''],
-      lastName: [''],
-      phoneNumber: [''],
-      email: [''],
-      odysseyProfile: [''],
-      role: ['']
-    });
-  }
+  constructor(private userService: UserService, private authService: AuthService) {}
 
   ngOnInit(): void {
-    const userId = this.authService.getCurrentUserId(); // Récupération de l'ID utilisateur à partir du JWT
-    if (userId) {
-      this.userService.getUserById(userId).subscribe(
-        (userData: User) => {
-          this.userForm.patchValue({
-            firstName: userData.firstName,
-            lastName: userData.lastName,
-            phoneNumber: userData.phoneNumber,
-            email: userData.email,
-            odysseyProfile: userData.odysseyProfile,
-            role: userData.role
-          });
-          this.userAvatarUrl = userData.avatarUrl || 'path/to/default-avatar.jpg';
-        },
-        (error: Error) => {
-          console.error('Erreur lors de la récupération des données utilisateur', error);
-        }
-      );
-    } else {
-      console.error('Utilisateur non authentifié ou ID introuvable');
-    }
+    this.currentUser = this.userService.getUser()();
   }
+
 }

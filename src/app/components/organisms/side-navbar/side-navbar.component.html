@@ -1,0 +1,13 @@
+<div class="side-navbar" [class.collapsed]="isCollapsed">
+  <div class="side-navbar-container">
+    <div>
+      <app-user avatarSrc="/assets/icons/profil.svg" altText="Amina Chakir" [isCollapsed]="isCollapsed"></app-user>
+      <app-nav-list [items]="mainItems" [isCollapsed]="isCollapsed" class="main-nav"></app-nav-list>
+    </div>
+    <app-nav-list [items]="footerItems" [isCollapsed]="isCollapsed" class="footer-nav" ></app-nav-list>
+  </div>
+  <app-toggle-button
+  [isCollapsed]="isCollapsed"
+  (click)="toggleNavbar()">
+  </app-toggle-button>
+</div>

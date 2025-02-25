@@ -1,0 +1,26 @@
+@import '../../../../styles/variables';
+
+:host {
+  display: contents;
+}
+
+.side-navbar {
+  /* Styles par défaut (étendue) */
+  position: fixed;
+  width: $expanded-navbar-width;
+  height: 100vh;
+  background-color: $second-background-color; 
+  transition: all 0.3s ease; /* Transition fluide */
+  z-index: 999;
+
+  &.collapsed {
+    width: $collapsed-navbar-width;
+  }
+
+  .side-navbar-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+}

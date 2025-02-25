@@ -2,33 +2,8 @@
 
 // Style principal pour la section de profil
 .user-profile-section {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: $background-color;
-  padding: $spacing-unit * 2;
-  border-radius: $border-radius;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: $background-color-form;
 
-  .profile-info,
-  .additional-info {
-    display: flex;
-    flex-direction: column;
-    gap: $spacing-unit * 2;
-    flex: 1;
-  }
-
-  .profile-avatar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 0 0 auto;
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin: 0 $spacing-unit * 2;
-  }
 
   @media (max-width: 768px) {
     flex-direction: column;

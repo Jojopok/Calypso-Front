@@ -1,20 +1,34 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal, Signal } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import { User } from '../models/user';
+import { UserUpdateDTO } from '../models/userUpdateDTO';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = 'http://localhost:8080/users'; // URL de l'API du back-end
+  private apiUrl = 'http://localhost:8080/users';
+  private userSignal = signal<User | null>(null);
 
   constructor(private http: HttpClient) {}
 
-  getUserById(id: number): Observable<User> {
-    const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJibGFibGE1QGdtYWlsLmNvbSIsInVzZXJJZCI6Miwicm9sZXMiOlt7ImF1dGhvcml0eSI6IlVzZXIifV0sImlhdCI6MTczMDgyMDQ4NCwiZXhwIjoxNzMwODI0MDg0fQ.x4cn-373WwWE7ZqGlkC0IlcQjB6AuNs-D5YSFe4hv6Q"; // Récupérer le token depuis le stockage local
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-
-    return this.http.get<User>(`${this.apiUrl}/${id}`, { headers });
+  getUser(): Signal<User> {
+    // On utilise un cast car on a déjà vérifié que la valeur n'est pas null
+    return signal(this.userSignal() as User);
   }
+
+  setUser(user: User): void {
+    this.userSignal.set(user);
+  }
+
+  getAllUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.apiUrl);
+  }
+
+  // Méthode pour mettre à jour un utilisateur
+  updateUser(updatedUser: UserUpdateDTO, userId: number): Observable<User> {
+    return this.http.put(`${this.apiUrl}/${userId}`, updatedUser).pipe(tap((user: any) => {this.setUser(user)})); // Mettre à jour l'utilisateur avec ses nouvelles infos
+  }
+
 }
