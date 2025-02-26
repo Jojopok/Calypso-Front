@@ -1,0 +1,49 @@
+@import '../../../../styles/variables';
+
+.algo-card {
+  background-color: $second-background-color; // Noir ou couleur définie dans tes variables SCSS
+  color: $text-color;
+  border-radius: 8px;
+  padding: $spacing-unit;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Icône en haut à gauche */
+  .algo-icon {
+    margin-bottom: $spacing-unit / 2;
+
+    img {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  /* Titre de l'algo */
+  .algo-title {
+    font-size: $font-size-large;
+    font-weight: bold;
+    margin: 0 0 $spacing-unit / 4 0;
+  }
+
+  /* Description */
+  .algo-description {
+    font-size: $font-size-base;
+    margin: 0;
+  }
+
+  /* Ligne colorée en bas */
+  .algo-footer {
+    width: 100%;
+    height: 4px;
+    margin-top: $spacing-unit;
+    border-radius: 0 0 8px 8px; // Coin arrondi uniquement en bas
+  }
+}

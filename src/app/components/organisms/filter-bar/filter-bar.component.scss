@@ -1,0 +1,14 @@
+@import '../../../../styles/variables';
+
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-unit;
+  background-color: $background-color-form;
+  padding: $spacing-unit;
+  align-items: center;
+
+  > * {
+    flex: 1;
+  }
+}

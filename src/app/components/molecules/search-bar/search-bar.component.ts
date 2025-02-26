@@ -12,12 +12,12 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './search-bar.component.scss'
 })
 export class SearchBarComponent {
-  @Output() search: EventEmitter<string> = new EventEmitter<string>(); 
+  @Output() search: EventEmitter<string> = new EventEmitter<string>();
 
-  searchQuery: string = '';  // Variable pour stocker la recherche
+  searchQuery: string = '';
   placeholder: string = 'Rechercher...';
   buttonLabel: string = 'Rechercher';
-  
+
   // Méthode qui est appelée lorsque le bouton de recherche est cliqué
   onSearch(): void {
     this.search.emit(this.searchQuery);
