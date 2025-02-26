@@ -41,10 +41,10 @@ export class AlgoComponent implements OnInit {
   loadAlgos(): void {
     this.algoService.getAlgos().subscribe(
       (algos: Algo[]) => {
-        console.log('Données reçues de l\'API:', algos); // 🔎 Vérifie que les algos sont bien reçus
+        console.log('Données reçues de l\'API:', algos);
 
         this.algos = algos;
-        this.filteredAlgos = [...algos]; // 🔥 Clonage de la liste complète pour éviter les références
+        this.filteredAlgos = [...algos];
       },
       (error) => {
         console.error('Erreur lors de la récupération des algos:', error);
@@ -56,7 +56,6 @@ export class AlgoComponent implements OnInit {
   loadCategories(): void {
     this.typeService.getTypes().subscribe(
       (types: Type[]) => {
-        // ✅ Ajoute l'option "Tous" en premier
         this.categories = [
           { name: "Tous", value: "all", color: "#ffffff", logo: "" },
           ...types.map(type => ({
@@ -76,13 +75,13 @@ export class AlgoComponent implements OnInit {
   }
 
   applyFilters(): void {
-    // ✅ Si aucun filtre n'est activé, afficher tous les algos
+    // Si aucun filtre n'est activé, afficher tous les algos
     if (!this.searchQuery && !this.selectedCategory && !this.showCompleted) {
       this.filteredAlgos = [...this.algos]; // 🔥 Cloner la liste complète
       return;
     }
 
-    // 🔥 Appliquer les filtres
+    // Appliquer les filtres
     this.filteredAlgos = this.algos.filter(algo => {
       const matchesSearch = this.searchQuery
         ? algo.title.toLowerCase().includes(this.searchQuery.toLowerCase())

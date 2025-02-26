@@ -1,5 +1,5 @@
-import { Type } from "./type"; // 🔥 Import du modèle Type
-import { Difficulty } from "./difficulty"; // 🔥 Import du modèle Difficulty
+import { Type } from "./type";
+import { Difficulty } from "./difficulty";
 
 export interface Algo {
   id: number;
@@ -10,6 +10,6 @@ export interface Algo {
   createdAt: Date;
   updatedAt: Date;
   difficulty: Difficulty;
-  typeIds: number[];  // ✅ Correction pour matcher avec l'API
+  typeIds: number[];
   userId: number;
 }
