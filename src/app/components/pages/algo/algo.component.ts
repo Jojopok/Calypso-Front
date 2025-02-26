@@ -14,7 +14,6 @@ import {NgForOf} from "@angular/common";
   standalone: true,
   imports: [
     FilterBarComponent,
-    AlgoGridComponent,
     ButtonComponent,
     AlgoCardComponent,
     NgForOf
@@ -34,7 +33,6 @@ export class AlgoComponent implements OnInit {
 
   ngOnInit() {
     this.loadAlgos();
-    this.loadCategories();
   }
 
   loadAlgos(): void {
@@ -48,23 +46,7 @@ export class AlgoComponent implements OnInit {
       }
     );
   }
-  loadCategories(): void {
-    this.typeService.getTypes().subscribe(
-      (types: Type[]) => {
-        this.categories = [
-          { id: 0, type: "Tous", color: "", logo: "", name: "Tous", value: "0" },
-          ...types.map(type => ({
-            ...type,
-            name: type.type,
-            value: type.id.toString(),
-          }))
-        ];
-      },
-    );
-  }
-
-
-
+  
   applyFilters(): void {
     let filtered = this.algos.filter(algo => {
       const matchesSearchQuery = this.searchQuery
