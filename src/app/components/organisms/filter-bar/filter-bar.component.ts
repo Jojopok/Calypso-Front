@@ -1,9 +1,8 @@
-import { Component, EventEmitter, Output, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { SearchBarComponent } from "../../molecules/search-bar/search-bar.component";
 import { DropdownListComponent } from "../../atoms/dropdown-list/dropdown-list.component";
 import { CheckboxToggleComponent } from "../../atoms/checkbox-toggle/checkbox-toggle.component";
-import { TypeService } from "../../../services/type.service";
-import { Type } from "../../../models/type"; // ✅ Import correct du modèle Type
+import { Type } from "../../../models/type"; // ✅ Import du modèle Type
 
 @Component({
   selector: 'app-filter-bar',
@@ -16,46 +15,22 @@ import { Type } from "../../../models/type"; // ✅ Import correct du modèle Ty
   templateUrl: './filter-bar.component.html',
   styleUrls: ['./filter-bar.component.scss']
 })
-export class FilterBarComponent implements OnInit {
-  categories: { name: string; value: string; color?: string; logo?: string }[] = [];
+export class FilterBarComponent {
+  @Input() categories: { name: string; value: string; color?: string; logo?: string }[] = []; // ✅ Les catégories viennent du parent
 
   @Output() search = new EventEmitter<string>();
   @Output() categorySelect = new EventEmitter<string>();
   @Output() completedToggle = new EventEmitter<boolean>();
 
-  constructor(private typeService: TypeService) {}
-
-  ngOnInit(): void {
-    this.loadCategories();
-  }
-
-  loadCategories(): void {
-    this.typeService.getTypes().subscribe(
-      (types: Type[]) => {
-        this.categories = types.map(type => ({
-          name: type.type,  // ✅ Utilise `type` de la BDD
-          value: type.id.toString(),  // 🔥 Convertit `id` en string
-          color: type.color, // Optionnel
-          logo: type.logo    // Optionnel
-        }));
-
-        console.log('Catégories après mapping:', this.categories); // Debug
-      },
-      (error) => {
-        console.error('Erreur lors de la récupération des catégories:', error);
-      }
-    );
-  }
-
-
   onSearch(query: string) {
     this.search.emit(query);
   }
 
-  onCategorySelect(value: string) {
-    console.log('Catégorie sélectionnée:', value);
-    this.categorySelect.emit(value);
+  onCategorySelect(category: { name: string; value: string }) {
+    console.log('✅ Catégorie envoyée à AlgoComponent:', category.value); // 🔎 Vérifie que c'est bien l'ID
+    this.categorySelect.emit(category.value); // ✅ Envoie seulement `value`, pas tout l'objet
   }
+
 
   onCompletedToggle(isCompleted: boolean) {
     this.completedToggle.emit(isCompleted);

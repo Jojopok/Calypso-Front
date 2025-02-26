@@ -10,6 +10,6 @@ export interface Algo {
   createdAt: Date;
   updatedAt: Date;
   difficulty: Difficulty;
-  types: Type[];
+  typeIds: number[];  // ✅ Correction pour matcher avec l'API
   userId: number;
 }
