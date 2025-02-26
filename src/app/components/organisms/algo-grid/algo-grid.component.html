@@ -1,8 +1,8 @@
 <div class="row g-3">
-  <div class="col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let algo of algos">
+  <div class="col-md-4 col-lg-3" *ngFor="let algo of algos">
     <app-algo-card
       [title]="algo.title"
-      [description]="algo.description"
+      [description]="algo.content"
       [iconSrc]="algo.iconSrc"
       [footerColor]="algo.footerColor"
       [cardClasses]="algo.cardClasses || []">

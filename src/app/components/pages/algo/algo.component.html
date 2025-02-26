@@ -1,10 +1,11 @@
 <div class="algo-page p-5 h-100 ">
   <app-filter-bar
-    [categories]="categories"
+    [options]="categories"
+    (selectionChange)="handleCategorySelect($event)"
     (search)="handleSearch($event)"
-    (categorySelect)="handleCategorySelect($event)"
     (completedToggle)="handleCompletedToggle($event)">
   </app-filter-bar>
+
 
   <div class="algo-grid">
     <app-algo-card *ngFor="let algo of filteredAlgos"

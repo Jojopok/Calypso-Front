@@ -20,20 +20,19 @@ import {NgForOf} from "@angular/common";
     NgForOf
   ],
   templateUrl: './algo.component.html',
-  styleUrls: ['./algo.component.scss']
+  styleUrl: './algo.component.scss'
 })
 export class AlgoComponent implements OnInit {
   algos: Algo[] = [];
   filteredAlgos: Algo[] = [];
-  categories: { name: string; value: string; color?: string; logo?: string }[] = [];
-
+  categories: Type[] = [];
   searchQuery: string = '';
   selectedCategory: string | null = null;
   showCompleted: boolean = false;
 
   constructor(private algoService: AlgoService, private typeService: TypeService) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.loadAlgos();
     this.loadCategories();
   }
@@ -41,8 +40,6 @@ export class AlgoComponent implements OnInit {
   loadAlgos(): void {
     this.algoService.getAlgos().subscribe(
       (algos: Algo[]) => {
-        console.log('Données reçues de l\'API:', algos);
-
         this.algos = algos;
         this.filteredAlgos = [...algos];
       },
@@ -52,63 +49,40 @@ export class AlgoComponent implements OnInit {
     );
   }
 
-
+  // Charger les catégories
   loadCategories(): void {
     this.typeService.getTypes().subscribe(
       (types: Type[]) => {
+        // Ajouter explicitement l'option "Tous"
         this.categories = [
-          { name: "Tous", value: "all", color: "#ffffff", logo: "" },
+          { id: 0, type: "Tous", color: "", logo: "", name: "Tous", value: "0" },
           ...types.map(type => ({
+            ...type,
             name: type.type,
             value: type.id.toString(),
-            color: type.color,
-            logo: type.logo
           }))
         ];
-
-        console.log('Catégories récupérées:', this.categories);
       },
-      (error) => {
-        console.error('Erreur lors de la récupération des catégories:', error);
-      }
     );
   }
 
   applyFilters(): void {
-    // Si aucun filtre n'est activé, afficher tous les algos
-    if (!this.searchQuery && !this.selectedCategory && !this.showCompleted) {
-      this.filteredAlgos = [...this.algos]; // 🔥 Cloner la liste complète
-      return;
-    }
-
-    // Appliquer les filtres
-    this.filteredAlgos = this.algos.filter(algo => {
-      const matchesSearch = this.searchQuery
+    let filtered = this.algos.filter(algo => {
+      const matchesSearchQuery = this.searchQuery
         ? algo.title.toLowerCase().includes(this.searchQuery.toLowerCase())
         : true;
 
-      const matchesCategory = this.selectedCategory === "all" || !this.selectedCategory
-        ? true  // ✅ Affiche tous les algos si "Tous" est sélectionné
+      const matchesCategory = this.selectedCategory === "0" || !this.selectedCategory
+        ? true
         : algo.typeIds.includes(Number(this.selectedCategory));
-
-
 
       const matchesCompletion = this.showCompleted ? algo.isVisible : true;
 
-      return matchesSearch && matchesCategory && matchesCompletion;
+      return matchesSearchQuery && matchesCategory && matchesCompletion;
     });
 
-    console.log("🔍 Filtres appliqués:", {
-      searchQuery: this.searchQuery,
-      selectedCategory: this.selectedCategory,
-      showCompleted: this.showCompleted
-    });
-
-    console.log("📌 Algorithmes filtrés:", this.filteredAlgos);
+    this.filteredAlgos = filtered;
   }
-
-
-
 
   handleSearch(query: string): void {
     this.searchQuery = query;
@@ -116,12 +90,9 @@ export class AlgoComponent implements OnInit {
   }
 
   handleCategorySelect(categoryId: string): void {
-    console.log("✅ Catégorie sélectionnée:", categoryId);
     this.selectedCategory = categoryId ? categoryId : null;
     this.applyFilters();
   }
-
-
 
   handleCompletedToggle(isCompleted: boolean): void {
     this.showCompleted = isCompleted;

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, ViewEncapsulation, forwardRef } from '@angular/core';
+import {Component, Input, ViewEncapsulation, forwardRef, Output, EventEmitter} from '@angular/core';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -50,6 +50,7 @@ export class InputFieldComponent implements ControlValueAccessor {
   }
 
   // Méthode appelée lorsque le champ est touché
+  @Output() valueChange = new EventEmitter<unknown>();
   onBlur(): void {
     this.onTouched();
   }

@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
 export class SearchBarComponent {
   @Output() search: EventEmitter<string> = new EventEmitter<string>();
 
-  searchQuery: string = '';  // Variable pour stocker la recherche
+  searchQuery: string = '';
   placeholder: string = 'Rechercher...';
   buttonLabel: string = 'Rechercher';
 

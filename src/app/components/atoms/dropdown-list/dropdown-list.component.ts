@@ -19,7 +19,6 @@ export class DropdownListComponent {
 
   // Méthode appelée lorsqu'une option est sélectionnée
   onSelect(option: { name: string; value: string }): void {
-    console.log('🔹 Option sélectionnée dans Dropdown:', option);
     this.selectedValue = option.name;
     this.isOpen = false;
     this.valueSelected.emit(option);
