@@ -1,9 +1,12 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { SearchBarComponent } from '../../molecules/search-bar/search-bar.component';
+import { DropdownListComponent } from '../../atoms/dropdown-list/dropdown-list.component';
+import { CheckboxToggleComponent } from '../../atoms/checkbox-toggle/checkbox-toggle.component';
 
 @Component({
   selector: 'app-filter-bar',
   standalone: true,
-  imports: [],
+  imports: [SearchBarComponent, DropdownListComponent, CheckboxToggleComponent],
   templateUrl: './filter-bar.component.html',
   styleUrl: './filter-bar.component.scss'
 })

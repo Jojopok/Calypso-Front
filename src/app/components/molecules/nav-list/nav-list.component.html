@@ -3,6 +3,7 @@
                   [iconSrc]="item.iconSrc" 
                   [text]="!isCollapsed ? item.text : undefined" 
                   [route]="item.route"
+                  [isActive]="isActive(item.route)"
                   (click)="item.text === 'Déconnexion' ? logout() : null">
     </app-nav-item>
   </div>

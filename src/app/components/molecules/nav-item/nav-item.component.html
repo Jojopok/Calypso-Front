@@ -1,5 +1,5 @@
-<a [routerLink]="route" class="nav-item">
-    <app-icon [iconSrc]="iconSrc" alt='label' class="nav-icon"></app-icon>
-    <app-text *ngIf="text" [text]="text"></app-text>
+<a [routerLink]="route" class="nav-item" routerLinkActive="active">
+    <app-icon [iconSrc]="iconSrc" alt='label' class="nav-icon" [isActive]="isActive"></app-icon>
+    <app-text *ngIf="text" [text]="text" [isActive]="isActive"></app-text>
 </a>
   
