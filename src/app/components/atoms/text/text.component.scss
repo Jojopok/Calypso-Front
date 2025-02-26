@@ -4,9 +4,8 @@
     color: white;
     margin-bottom: 0;
     font-size: 16px;
-    transition: all 0.7s ease;
 }
 .active {
-    color: $tertiary-color; 
+    filter: brightness(0) saturate(100%) invert(16%) sepia(99%) saturate(6051%) hue-rotate(315deg);
 }
   
