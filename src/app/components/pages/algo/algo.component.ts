@@ -48,12 +48,9 @@ export class AlgoComponent implements OnInit {
       }
     );
   }
-
-  // Charger les catégories
   loadCategories(): void {
     this.typeService.getTypes().subscribe(
       (types: Type[]) => {
-        // Ajouter explicitement l'option "Tous"
         this.categories = [
           { id: 0, type: "Tous", color: "", logo: "", name: "Tous", value: "0" },
           ...types.map(type => ({
@@ -65,6 +62,8 @@ export class AlgoComponent implements OnInit {
       },
     );
   }
+
+
 
   applyFilters(): void {
     let filtered = this.algos.filter(algo => {
