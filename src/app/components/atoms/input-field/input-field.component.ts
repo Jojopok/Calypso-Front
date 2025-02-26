@@ -24,6 +24,7 @@ export class InputFieldComponent implements ControlValueAccessor {
   @Input() value: string = '';
   @Input() isRequired: boolean = false;
   @Input() isDisabled: boolean = false;
+  @Input() backgroundColor: 'light' | 'dark' = 'dark';
 
   // Méthodes pour la gestion des changements et des touches
   onChange = (value: string) => {};

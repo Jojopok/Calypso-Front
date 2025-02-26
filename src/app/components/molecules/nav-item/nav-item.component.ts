@@ -11,9 +11,10 @@ import { TextComponent } from '../../atoms/text/text.component';
   templateUrl: './nav-item.component.html',
   styleUrl: './nav-item.component.scss'
 })
-export class NavItemComponent {
+export class NavItemComponent{
   @Input() isCollapsed: boolean = false; 
   @Input() iconSrc!: string; 
   @Input() text: string | undefined;   
   @Input() route: string | undefined;   
+  @Input() isActive: boolean = false;
 }
