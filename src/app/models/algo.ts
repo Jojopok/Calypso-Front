@@ -10,6 +10,6 @@ export interface Algo {
   createdAt: Date;
   updatedAt: Date;
   difficulty: Difficulty;
-  typeIds: number[];
+  types: Type[];
   userId: number;
 }

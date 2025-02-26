@@ -12,21 +12,12 @@ import { TypeService } from '../../../services/type.service';
   templateUrl: './filter-bar.component.html',
   styleUrls: ['./filter-bar.component.scss']
 })
-export class FilterBarComponent implements OnInit{
+export class FilterBarComponent{
   @Input() options: any[] = [];
   @Output() search = new EventEmitter<string>();
   @Output() selectionChange = new EventEmitter<any>();
   @Output() completedToggle = new EventEmitter<boolean>();
-  categories: Type[] = [];
-  categoriesNom: string[] = [];
 
-  constructor(private typeService: TypeService) { }
-
-  ngOnInit(): void {
-    this.typeService.getTypes().subscribe(types => {
-      this.categoriesNom = Array.from(new Set(types.map(type => type.type)));
-      });
-  }
   onSearch(query: string) {
     this.search.emit(query);
   }

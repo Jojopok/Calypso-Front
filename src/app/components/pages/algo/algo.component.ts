@@ -28,11 +28,13 @@ export class AlgoComponent implements OnInit {
   searchQuery: string = '';
   selectedCategory: string | null = null;
   showCompleted: boolean = false;
+  categoriesNom: string[] = [];
 
   constructor(private algoService: AlgoService, private typeService: TypeService) {}
 
   ngOnInit() {
     this.loadAlgos();
+    this.loadTypes();
   }
 
   loadAlgos(): void {
@@ -46,16 +48,35 @@ export class AlgoComponent implements OnInit {
       }
     );
   }
+  loadTypes(): void {
+    this.typeService.getTypes().subscribe(types => {
+      this.categoriesNom = Array.from(new Set(types.map(type => type.type)));
+      });
+  }
   
+  handleSearch(query: string): void {
+    this.searchQuery = query;
+    this.applyFilters();
+  }
+
+  handleCategorySelect(categoryNom: string): void {
+    this.selectedCategory = categoryNom ? categoryNom : null;
+    this.applyFilters();
+  }
+
+  handleCompletedToggle(isCompleted: boolean): void {
+    this.showCompleted = isCompleted;
+    this.applyFilters();
+  }
+
   applyFilters(): void {
     let filtered = this.algos.filter(algo => {
       const matchesSearchQuery = this.searchQuery
         ? algo.title.toLowerCase().includes(this.searchQuery.toLowerCase())
         : true;
 
-      const matchesCategory = this.selectedCategory === "0" || !this.selectedCategory
-        ? true
-        : algo.typeIds.includes(Number(this.selectedCategory));
+      const matchesCategory = this.selectedCategory ? 
+         algo.types.some(type => type.type === this.selectedCategory) : true;
 
       const matchesCompletion = this.showCompleted ? algo.isVisible : true;
 
@@ -65,18 +86,4 @@ export class AlgoComponent implements OnInit {
     this.filteredAlgos = filtered;
   }
 
-  handleSearch(query: string): void {
-    this.searchQuery = query;
-    this.applyFilters();
-  }
-
-  handleCategorySelect(categoryId: string): void {
-    this.selectedCategory = categoryId ? categoryId : null;
-    this.applyFilters();
-  }
-
-  handleCompletedToggle(isCompleted: boolean): void {
-    this.showCompleted = isCompleted;
-    this.applyFilters();
-  }
 }
