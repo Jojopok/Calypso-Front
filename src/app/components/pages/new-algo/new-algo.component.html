@@ -1,0 +1,20 @@
+<div class="new-algo p-5 h-100 position-relative">
+    <div class="d-flex align-items-center justify-content-between mb-5">
+        <app-input-field class="col-5" [label]="'Titre'" [isRequired]="true" [backgroundColor]="'light'"></app-input-field>
+        <app-dropdown-list class="col-2" [options]="categories.name" [placeholder]="'CATEGORIES'" (valueSelected)="onCategorieSelect($event)"></app-dropdown-list>
+    </div>
+    <div class="mb-5 mt-5">
+        <app-subtitle [text]="'Enoncé'"></app-subtitle>
+        <app-ckeditor></app-ckeditor>
+    </div>
+    <div class="mb-5 mt-5">
+        <app-subtitle [text]="'Solution'"></app-subtitle>
+        <app-ckeditor></app-ckeditor>
+    </div>
+    <div class="mb-5 mt-5">
+        <app-subtitle [text]="'Niveau de difficulté'"></app-subtitle>
+    </div>
+    <div class="d-flex flex-row-reverse mb-5 mt-5">
+        <app-button [type]="'submit'" buttonType="submit" [label]="isEdit ? 'Enregistrer' : 'Ajouter'"></app-button>
+    </div>
+</div>

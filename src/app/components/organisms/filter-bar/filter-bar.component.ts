@@ -7,11 +7,7 @@ import { Type } from "../../../models/type";
 @Component({
   selector: 'app-filter-bar',
   standalone: true,
-  imports: [
-    SearchBarComponent,
-    DropdownListComponent,
-    CheckboxToggleComponent
-  ],
+  imports: [SearchBarComponent, DropdownListComponent, CheckboxToggleComponent],
   templateUrl: './filter-bar.component.html',
   styleUrls: ['./filter-bar.component.scss']
 })

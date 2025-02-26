@@ -1,5 +1,11 @@
+@import '../../../../styles/variables';
+
 img {
   display: block;
   fill: white;
   z-index: 10000;
+}
+
+.active{
+  filter: brightness(0) saturate(100%) invert(16%) sepia(99%) saturate(6051%) hue-rotate(315deg);
 }

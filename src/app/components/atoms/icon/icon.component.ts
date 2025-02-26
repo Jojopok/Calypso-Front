@@ -12,4 +12,5 @@ export class IconComponent {
   @Input() altText: string = 'Icon';
   @Input() width: number = 24;
   @Input() height: number = 24;
+  @Input() isActive: boolean = false;
 }

@@ -12,4 +12,5 @@ export class TextComponent {
   @Input() text: string | number = '';
   @Input() color: string = 'white';
   @Input() fontSize: string = '1rem';
+  @Input() isActive: boolean = false;
 }
