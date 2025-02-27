@@ -23,7 +23,7 @@ export class FilterBarComponent{
   }
 
   onCategorySelect(category: any) {
-    this.selectionChange.emit(category.value);
+    this.selectionChange.emit(category);
   }
 
   onCompletedToggle(isCompleted: boolean) {

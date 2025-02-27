@@ -71,16 +71,18 @@ export class AlgoComponent implements OnInit {
 
   applyFilters(): void {
     let filtered = this.algos.filter(algo => {
-      const matchesSearchQuery = this.searchQuery
+      let matchesSearchQuery = this.searchQuery
         ? algo.title.toLowerCase().includes(this.searchQuery.toLowerCase())
         : true;
 
-      const matchesCategory = this.selectedCategory ? 
-         algo.types.some(type => type.type === this.selectedCategory) : true;
-
-      const matchesCompletion = this.showCompleted ? algo.isVisible : true;
-
-      return matchesSearchQuery && matchesCategory && matchesCompletion;
+        let matchesCompletion = this.showCompleted ? algo.isVisible : true;
+        if(algo.type){
+            let matchesCategory = this.selectedCategory ? 
+            algo.type.some(type => type.type === this.selectedCategory) : true;
+          return matchesSearchQuery && matchesCategory && matchesCompletion;
+        }
+  
+      return matchesSearchQuery && matchesCompletion;
     });
 
     this.filteredAlgos = filtered;
