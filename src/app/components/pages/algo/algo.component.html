@@ -11,8 +11,8 @@
     <app-algo-card *ngFor="let algo of filteredAlgos"
                    [title]="algo.title"
                    [description]="algo.content"
-                   [iconSrc]="'/assets/icons/algo.svg'"
-                   [footerColor]="algo.isVisible ? '#1976d2' : '#ff0078'">
+                   [iconSrc]="getAlgoLogo(algo)"
+                   [footerColor]="getAlgoColor(algo)">
     </app-algo-card>
   </div>
 

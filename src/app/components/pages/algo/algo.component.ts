@@ -48,21 +48,33 @@ export class AlgoComponent implements OnInit {
       }
     );
   }
+
+  getAlgoColor(algo: Algo): string {
+      return algo.type[0]?.color ?? '#cccccc';
+  }
+
+
+  getAlgoLogo(algo: Algo): string {
+    return algo.type?.[0]?.logo ?? '/assets/icons/algo.svg';
+  }
+
+
   loadTypes(): void {
     this.typeService.getTypes().subscribe(types => {
-      this.categoriesNom = Array.from(new Set(types.map(type => type.type)));
-      });
+      this.categoriesNom = ['Tous', ...Array.from(new Set(types.map(type => type.type)))];
+    });
   }
-  
+
   handleSearch(query: string): void {
     this.searchQuery = query;
     this.applyFilters();
   }
 
   handleCategorySelect(categoryNom: string): void {
-    this.selectedCategory = categoryNom ? categoryNom : null;
+    this.selectedCategory = categoryNom === 'Tous' ? null : categoryNom;
     this.applyFilters();
   }
+
 
   handleCompletedToggle(isCompleted: boolean): void {
     this.showCompleted = isCompleted;
@@ -77,11 +89,11 @@ export class AlgoComponent implements OnInit {
 
         let matchesCompletion = this.showCompleted ? algo.isVisible : true;
         if(algo.type){
-            let matchesCategory = this.selectedCategory ? 
+            let matchesCategory = this.selectedCategory ?
             algo.type.some(type => type.type === this.selectedCategory) : true;
           return matchesSearchQuery && matchesCategory && matchesCompletion;
         }
-  
+
       return matchesSearchQuery && matchesCompletion;
     });
 
