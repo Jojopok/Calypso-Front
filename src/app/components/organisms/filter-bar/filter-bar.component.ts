@@ -1,29 +1,30 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { SearchBarComponent } from '../../molecules/search-bar/search-bar.component';
-import { DropdownListComponent } from '../../atoms/dropdown-list/dropdown-list.component';
-import { CheckboxToggleComponent } from '../../atoms/checkbox-toggle/checkbox-toggle.component';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { SearchBarComponent } from "../../molecules/search-bar/search-bar.component";
+import { DropdownListComponent } from "../../atoms/dropdown-list/dropdown-list.component";
+import { CheckboxToggleComponent } from "../../atoms/checkbox-toggle/checkbox-toggle.component";
+import { Type } from "../../../models/type";
+import { TypeService } from '../../../services/type.service';
+import {ButtonComponent} from "../../atoms/button/button.component";
 
 @Component({
   selector: 'app-filter-bar',
   standalone: true,
-  imports: [SearchBarComponent, DropdownListComponent, CheckboxToggleComponent],
+    imports: [SearchBarComponent, DropdownListComponent, CheckboxToggleComponent, ButtonComponent],
   templateUrl: './filter-bar.component.html',
-  styleUrl: './filter-bar.component.scss'
+  styleUrls: ['./filter-bar.component.scss']
 })
-export class FilterBarComponent {
-  categories: any[] = []; // Plus besoin de @Input(), on récupère via le service
+export class FilterBarComponent{
+  @Input() options: any[] = [];
   @Output() search = new EventEmitter<string>();
-  @Output() categorySelect = new EventEmitter<string>();
+  @Output() selectionChange = new EventEmitter<any>();
   @Output() completedToggle = new EventEmitter<boolean>();
-
-  constructor() {}
 
   onSearch(query: string) {
     this.search.emit(query);
   }
 
-  onCategorySelect(value: string) {
-    this.categorySelect.emit(value);
+  onCategorySelect(category: any) {
+    this.selectionChange.emit(category);
   }
 
   onCompletedToggle(isCompleted: boolean) {

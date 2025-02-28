@@ -1,24 +1,23 @@
 @import '../../../../styles/variables';
 
   .dropdown-container {
-    background-color: transparent;    
+    background-color: transparent;
     border: 1px solid $border-color;
     transition: all 0.3s ease;
     cursor: pointer;
   }
-  
+
   .arrow.open {
-    transform: rotate(180deg);  // Rotation de la flèche lors de l'ouverture
+    transform: rotate(180deg);
   }
-  
+
   .dropdown-list {
-    background-color: $background-color; // Fond sombre
+    background-color: $background-color;
     border: 1px solid $border-color;
   }
-  
+
   .dropdown-option {
     &:hover {
-      background-color: $second-background-color; // Fond plus clair au survol
+      background-color: $second-background-color;
     }
   }
-  
