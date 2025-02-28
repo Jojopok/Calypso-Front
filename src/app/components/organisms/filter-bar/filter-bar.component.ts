@@ -4,11 +4,12 @@ import { DropdownListComponent } from "../../atoms/dropdown-list/dropdown-list.c
 import { CheckboxToggleComponent } from "../../atoms/checkbox-toggle/checkbox-toggle.component";
 import { Type } from "../../../models/type";
 import { TypeService } from '../../../services/type.service';
+import {ButtonComponent} from "../../atoms/button/button.component";
 
 @Component({
   selector: 'app-filter-bar',
   standalone: true,
-  imports: [SearchBarComponent, DropdownListComponent, CheckboxToggleComponent],
+    imports: [SearchBarComponent, DropdownListComponent, CheckboxToggleComponent, ButtonComponent],
   templateUrl: './filter-bar.component.html',
   styleUrls: ['./filter-bar.component.scss']
 })

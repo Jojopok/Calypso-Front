@@ -1,9 +1,9 @@
 @import '../../../../styles/variables';
 .algo-grid {
-  display: grid; // ✅ Active un affichage en grille
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); // ✅ Ajuste les colonnes
-  gap: $spacing-unit; // ✅ Espacement entre les cartes
-  padding: $spacing-unit; // ✅ Ajoute un peu d'espace autour
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: $spacing-unit;
+  padding: $spacing-unit;
 }
 
 .algo-page {
