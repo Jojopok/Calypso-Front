@@ -1,6 +1,6 @@
 <div class="dropdown-container rounded text-light position-relative" >
   <div class="dropdown-box rounded p-2 d-flex justify-content-evenly" (click)="isOpen = !isOpen">
-    <span>{{ selectedValue || placeholder }}</span>
+    <span>{{ selectedValue[0] || placeholder }}</span>
     <i class="d-flex arrow align-items-center fas fa-chevron-down" [class.open]="isOpen"></i>
   </div>
 

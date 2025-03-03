@@ -9,7 +9,7 @@ export interface Algo {
   isVisible: boolean;
   createdAt: Date;
   updatedAt: Date;
-  difficulty: Difficulty;
+  difficultyId: number;
   type: Type[];
   userId: number;
 }

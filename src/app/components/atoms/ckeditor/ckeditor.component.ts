@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, type AfterViewInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, type AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
 	type EditorConfig,
@@ -39,7 +39,7 @@ const LICENSE_KEY =
 })
 export class CkeditorComponent implements AfterViewInit {
 	constructor(private changeDetector: ChangeDetectorRef) {}
-
+	@Input() data: string = '';
 	public isLayoutReady = false;
 	public Editor = ClassicEditor;
 	public config: EditorConfig = {}; // CKEditor needs the DOM tree before calculating the configuration.
@@ -130,7 +130,7 @@ export class CkeditorComponent implements AfterViewInit {
 					}
 				]
 			},
-			initialData:'',
+			initialData: this.data,
 			licenseKey: LICENSE_KEY,
 			link: {
 				addTargetToExternalLinks: true,
