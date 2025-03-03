@@ -11,5 +11,5 @@
     label="Terminé"
     (toggle)="onCompletedToggle($event)">
   </app-checkbox-toggle>
-  <app-button label="+ AJOUTER" buttonType="submit"></app-button>
+  <app-button *ngIf="userRole === 'ADMIN'" label="+ AJOUTER" buttonType="submit" (click)="navigateToEditAlgo()"></app-button>
 </div>

@@ -32,11 +32,13 @@ export class AlgoComponent implements OnInit {
   showCompleted: boolean = false;
   categoriesNom: string[] = [];
   currentUser!: User;
+  userRole!: string;
 
   constructor(private algoService: AlgoService, private typeService: TypeService, private userService: UserService) {}
 
   ngOnInit() {
-    this.currentUser = this.userService.getUser()()
+    this.currentUser = this.userService.getUser()();
+    this.userRole = this.currentUser.roles[0];
     this.loadAlgos();
     this.loadTypes();
   }
@@ -91,8 +93,8 @@ export class AlgoComponent implements OnInit {
         ? algo.title.toLowerCase().includes(this.searchQuery.toLowerCase())
         : true;
 
-      let matchesCompletion = this.showCompleted
-        ? algo.UserAnswer.some(answer => answer.userId === this.currentUser.id && answer.isRight)
+      let matchesCompletion = this.showCompleted && algo.userAnswer
+        ? algo.userAnswer.some(answer => answer.userId === this.currentUser.id && answer.isRight)
         : true;
 
       let matchesCategory = this.selectedCategory

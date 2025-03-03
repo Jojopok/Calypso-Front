@@ -1,5 +1,6 @@
 <div class="algo-page p-5 h-100 ">
   <app-filter-bar
+    [userRole]="userRole"
     [options]="categoriesNom"
     (selectionChange)="handleCategorySelect($event)"
     (search)="handleSearch($event)"

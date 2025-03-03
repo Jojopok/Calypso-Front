@@ -12,6 +12,6 @@ export interface Algo {
   updatedAt: Date;
   difficulty: Number;
   type: Type[];
-  UserAnswer: UserAnswer[];
+  userAnswer: UserAnswer[];
   userId: number;
 }
