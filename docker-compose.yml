@@ -7,5 +7,7 @@ services:
       - "4200:4200"
     volumes:
       - .:/app
-      - /app/node_modules
+      - /app/node_modules # Éviter d'écraser node_modules
+      - /app/dist # Empêcher la synchronisation des fichiers build
+      - /app/.angular/cache # Empêcher le cache de bloquer le reload
     command: ["npm", "start"]

@@ -8,6 +8,8 @@ import { Algo } from "../../../models/algo";
 import { Type } from "../../../models/type";
 import {AlgoCardComponent} from "../../molecules/algo-card/algo-card.component";
 import {NgForOf} from "@angular/common";
+import {UserService} from "../../../services/user.service";
+import {User} from "../../../models/user";
 
 @Component({
   selector: 'app-algo',
@@ -29,10 +31,12 @@ export class AlgoComponent implements OnInit {
   selectedCategory: string | null = null;
   showCompleted: boolean = false;
   categoriesNom: string[] = [];
+  currentUser!: User;
 
-  constructor(private algoService: AlgoService, private typeService: TypeService) {}
+  constructor(private algoService: AlgoService, private typeService: TypeService, private userService: UserService) {}
 
   ngOnInit() {
+    this.currentUser = this.userService.getUser()()
     this.loadAlgos();
     this.loadTypes();
   }
@@ -87,17 +91,17 @@ export class AlgoComponent implements OnInit {
         ? algo.title.toLowerCase().includes(this.searchQuery.toLowerCase())
         : true;
 
-        let matchesCompletion = this.showCompleted ? algo.isVisible : true;
-        if(algo.type){
-            let matchesCategory = this.selectedCategory ?
-            algo.type.some(type => type.type === this.selectedCategory) : true;
-          return matchesSearchQuery && matchesCategory && matchesCompletion;
-        }
+      let matchesCompletion = this.showCompleted
+        ? algo.UserAnswer.some(answer => answer.userId === this.currentUser.id && answer.isRight)
+        : true;
 
-      return matchesSearchQuery && matchesCompletion;
+      let matchesCategory = this.selectedCategory
+        ? algo.type.some(type => type.type === this.selectedCategory)
+        : true;
+
+      return matchesSearchQuery && matchesCategory && matchesCompletion;
     });
 
     this.filteredAlgos = filtered;
   }
-
 }

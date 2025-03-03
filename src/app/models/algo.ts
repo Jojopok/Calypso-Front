@@ -1,5 +1,6 @@
 import { Type } from "./type";
 import { Difficulty } from "./difficulty";
+import { UserAnswer } from "./UserAnswer";
 
 export interface Algo {
   id: number;
@@ -9,7 +10,8 @@ export interface Algo {
   isVisible: boolean;
   createdAt: Date;
   updatedAt: Date;
-  difficulty: Difficulty;
+  difficulty: Number;
   type: Type[];
+  UserAnswer: UserAnswer[];
   userId: number;
 }
