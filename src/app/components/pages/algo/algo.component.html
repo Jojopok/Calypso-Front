@@ -1,1 +1,23 @@
-<p>algo works!</p>
+<div class="algo-page p-5 h-100 ">
+  <app-filter-bar
+    [userRole]="userRole"
+    [options]="categoriesNom"
+    (selectionChange)="handleCategorySelect($event)"
+    (search)="handleSearch($event)"
+    (completedToggle)="handleCompletedToggle($event)">
+  </app-filter-bar>
+
+
+  <div class="algo-grid">
+    <app-algo-card *ngFor="let algo of filteredAlgos"
+                   [title]="algo.title"
+                   [description]="algo.content"
+                   [iconSrc]="getAlgoLogo(algo)"
+                   [footerColor]="getAlgoColor(algo)">
+    </app-algo-card>
+  </div>
+
+  <div class="footer text-center">
+    <app-button label="MES ALGORITHMES" buttonType="primary"></app-button>
+  </div>
+</div>

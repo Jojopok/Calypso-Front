@@ -1,14 +1,15 @@
 <div class="d-flex align-items-center gap-3">
-    <app-search-bar
-      (search)="onSearch($event)">
-    </app-search-bar>
-    <app-dropdown-list
-      [options]="categories"
-      placeholder="Catégories"
-      (valueSelected)="onCategorySelect($event)">
-    </app-dropdown-list>
-    <app-checkbox-toggle
-      label="Terminé"
-      (toggle)="onCompletedToggle($event)">
-    </app-checkbox-toggle>
+  <app-search-bar
+    (search)="onSearch($event)">
+  </app-search-bar>
+  <app-dropdown-list
+    [options]="options"
+    placeholder="Catégories"
+    (valueSelected)="onCategorySelect($event)">
+  </app-dropdown-list>
+  <app-checkbox-toggle
+    label="Terminé"
+    (toggle)="onCompletedToggle($event)">
+  </app-checkbox-toggle>
+  <app-button *ngIf="userRole === 'ADMIN'" label="+ AJOUTER" buttonType="submit" (click)="navigateToEditAlgo()"></app-button>
 </div>

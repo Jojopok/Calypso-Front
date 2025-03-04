@@ -11,7 +11,9 @@ COPY package.json package-lock.json ./
 RUN npm install
 
 # Copier tous les fichiers du projet
-COPY . .
+COPY . ./
+RUN npm install
+
 
 # Exposer le port utilisé par Angular CLI (par défaut 4200)
 EXPOSE 4200
