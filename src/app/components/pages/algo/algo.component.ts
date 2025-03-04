@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FilterBarComponent } from "../../organisms/filter-bar/filter-bar.component";
-import { AlgoGridComponent } from "../../organisms/algo-grid/algo-grid.component";
 import { ButtonComponent } from "../../atoms/button/button.component";
 import { AlgoService } from "../../../services/algo.service";
 import { TypeService } from "../../../services/type.service";
