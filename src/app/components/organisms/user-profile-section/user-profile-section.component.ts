@@ -6,7 +6,7 @@ import { SubtitleComponent } from '../../atoms/subtitle/subtitle.component';
 import { User } from '../../../models/user';
 import { UserUpdateDTO } from '../../../models/userUpdateDTO';
 import { debounceTime, Subject, switchMap } from 'rxjs';
-import { AuthService } from '../../../services/auth.service';
+import { AppToastService } from '../../../services/app-toast.service';
 
 @Component({
   selector: 'app-user-profile-section',
@@ -28,7 +28,8 @@ export class UserProfileSectionComponent implements OnInit {
   private userChangeSubject = new Subject<void>();  // Un subject pour capturer les changements
   private delayTime = 900; // Le délai de debounce en millisecondes
   
-  constructor(private userService: UserService
+  constructor(private userService: UserService,
+              private toastService: AppToastService
   ) {}
 
   ngOnInit(): void {
@@ -92,10 +93,10 @@ export class UserProfileSectionComponent implements OnInit {
     // Appeler le service pour mettre à jour l'utilisateur
     this.userService.updateUser(updatedUser, this.currentUser.id).subscribe(
       (response) => {
-        console.log('User updated successfully:', response);
+        this.toastService.showSuccess('Success', 'User updated successfully');
       },
       (error) => {
-        console.error('Error updating user:', error);
+        this.toastService.showDanger('Error', 'Error updating user');
       }
     );
   }

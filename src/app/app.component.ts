@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { UserProfileComponent } from "./components/pages/user-profile/user-profile.component";
 import { HttpClientModule } from '@angular/common/http';
-import { LandingPageComponent } from './components/pages/landing-page/landing-page.component';
+import { ToastComponent } from "./components/atoms/toast/toast.component";
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [HttpClientModule, RouterOutlet],
+  imports: [HttpClientModule, RouterOutlet, ToastComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
