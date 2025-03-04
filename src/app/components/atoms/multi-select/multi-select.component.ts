@@ -29,7 +29,7 @@ export class MultiSelectComponent {
     } else {
       this.selectedValue.push(option);  // Ajouter l'option à la sélection
     }
-
+console.log('selectedValue', this.selectedValue);
     this.valueSelected.emit(this.selectedValue);  // Émettre la sélection vers le parent
   }
 }

@@ -5,7 +5,8 @@
         [value]="title"
         [label]="'Titre'"
         [isRequired]="true"
-        [backgroundColor]="'light'">
+        [backgroundColor]="'light'"
+        (input)="onAlgoChange($event, 'title')">
       </app-input-field>
       
       <app-multi-select
@@ -13,22 +14,24 @@
         [options]="categories"
         [selectedValue]="selectedCategories"
         [placeholder]="'Catégories'"
-        (valueChanged)="onCategorieSelect(categories)">
+        (valueSelected)="onCategorieSelect($event)"
+        >
       </app-multi-select>
     </div>
 
     <div class="mb-5 mt-5">
       <app-subtitle [text]="'Enoncé'"></app-subtitle>
-      <app-ckeditor [data]="content"></app-ckeditor>
-    </div>
+      <app-ckeditor [data]="content" (dataChange)="onDataChange($event, 'content')"></app-ckeditor>
+    </div> 
 
     <div class="mb-5 mt-5">
       <app-subtitle [text]="'Solution'"></app-subtitle>
-      <app-ckeditor [data]="answer"></app-ckeditor>
+      <app-ckeditor [data]="answer" (dataChange)="onDataChange($event, 'answer')"></app-ckeditor>
     </div>
 
-    <div class="mb-5 mt-5">
-      <app-subtitle [text]="'Niveau de difficulté'"></app-subtitle>
+    <div class="mb-5 mt-5 d-flex ">
+      <app-subtitle class="p-2" [text]="'Niveau de difficulté'"></app-subtitle>
+      <ngb-rating [(rate)]="selected" (hover)="hovered = $event" (leave)="hovered = 0" [readonly]="readonly" class="star ps-2"/>
     </div>
 
     <div class="d-flex flex-row-reverse mb-5 mt-5">
@@ -38,5 +41,5 @@
         [label]="isEdit ? 'Enregistrer' : 'Ajouter'" (click)="onSubmit()">
       </app-button>
     </div>
-  </div>
+  </div> 
   
