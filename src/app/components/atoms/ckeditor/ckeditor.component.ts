@@ -159,6 +159,7 @@ export class CkeditorComponent implements AfterViewInit {
 	
 	// Émettre les données lorsqu'elles sont modifiées dans CKEditor
 	onEditorChange(event: any): void {
+		console.log('Editor change event', event);
 		this.dataChange.emit(event.editor.getData());
 	}
 }

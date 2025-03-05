@@ -31,7 +31,7 @@
 
     <div class="mb-5 mt-5 d-flex ">
       <app-subtitle class="p-2" [text]="'Niveau de difficulté'"></app-subtitle>
-      <ngb-rating [(rate)]="selected" (hover)="hovered = $event" (leave)="hovered = 0" [readonly]="readonly" class="star ps-2"/>
+      <ngb-rating [(rate)]="selected" (hover)="hovered = $event" (leave)="hovered = 0" [readonly]="readonly" class="star ps-2" (rateChange)="onRatingChange($event)"/>
     </div>
 
     <div class="d-flex flex-row-reverse mb-5 mt-5">

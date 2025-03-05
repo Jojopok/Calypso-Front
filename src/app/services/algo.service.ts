@@ -24,6 +24,7 @@ export class AlgoService {
   }
 
   updateAlgo(algo: Algo): Observable<Algo> {
+    console.log(algo);
     return this.http.put<Algo>(`${this.apiUrl}/${algo.id}`, algo);
   }
 }

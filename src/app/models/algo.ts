@@ -1,5 +1,4 @@
 import { Type } from "./type";
-import { Difficulty } from "./difficulty";
 
 export interface Algo {
   id: number;

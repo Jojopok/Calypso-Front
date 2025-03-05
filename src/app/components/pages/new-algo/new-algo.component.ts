@@ -3,7 +3,6 @@ import { CkeditorComponent } from "../../atoms/ckeditor/ckeditor.component";
 import { ButtonComponent } from "../../atoms/button/button.component";
 import { InputFieldComponent } from '../../atoms/input-field/input-field.component';
 import { SubtitleComponent } from "../../atoms/subtitle/subtitle.component";
-import { RatingComponent } from "../../atoms/rating/rating.component";
 import { Algo } from '../../../models/algo';
 import { AlgoService } from '../../../services/algo.service';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -69,6 +68,7 @@ export class NewAlgoComponent implements OnInit {
       this.content = this.algo.content;
       this.answer = this.algo.answer;
       this.difficultyId = this.algo.difficultyId;
+      console.log('difficulté:', this.difficultyId);
       this.selectedCategories = this.algo.type.map(item => item.type);
     } else {
       this.title = '';
@@ -123,6 +123,11 @@ export class NewAlgoComponent implements OnInit {
   onDataChange(newData: string, field: string): void {
     field == 'content' ? this.algo.content = newData : this.algo.answer = newData;
     console.log('Données modifiées:', field, newData);
+  }
+
+  onRatingChange(rating: number): void {
+    this.algo.difficultyId = rating;
+    console.log('Difficulté sélectionnée:', this.algo.difficultyId);  
   }
 
   onSubmit() {
