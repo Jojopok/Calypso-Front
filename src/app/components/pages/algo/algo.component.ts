@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FilterBarComponent } from "../../organisms/filter-bar/filter-bar.component";
-import { AlgoGridComponent } from "../../organisms/algo-grid/algo-grid.component";
 import { ButtonComponent } from "../../atoms/button/button.component";
 import { AlgoService } from "../../../services/algo.service";
 import { TypeService } from "../../../services/type.service";
@@ -8,6 +7,8 @@ import { Algo } from "../../../models/algo";
 import { Type } from "../../../models/type";
 import {AlgoCardComponent} from "../../molecules/algo-card/algo-card.component";
 import {NgForOf} from "@angular/common";
+import {UserService} from "../../../services/user.service";
+import {User} from "../../../models/user";
 
 @Component({
   selector: 'app-algo',
@@ -29,10 +30,14 @@ export class AlgoComponent implements OnInit {
   selectedCategory: string | null = null;
   showCompleted: boolean = false;
   categoriesNom: string[] = [];
+  currentUser!: User;
+  userRole!: string;
 
-  constructor(private algoService: AlgoService, private typeService: TypeService) {}
+  constructor(private algoService: AlgoService, private typeService: TypeService, private userService: UserService) {}
 
   ngOnInit() {
+    this.currentUser = this.userService.getUser()();
+    this.userRole = this.currentUser.roles[0];
     this.loadAlgos();
     this.loadTypes();
   }
@@ -48,21 +53,33 @@ export class AlgoComponent implements OnInit {
       }
     );
   }
+
+  getAlgoColor(algo: Algo): string {
+      return algo.type[0]?.color ?? '#cccccc';
+  }
+
+
+  getAlgoLogo(algo: Algo): string {
+    return algo.type?.[0]?.logo ?? '/assets/icons/algo.svg';
+  }
+
+
   loadTypes(): void {
     this.typeService.getTypes().subscribe(types => {
-      this.categoriesNom = Array.from(new Set(types.map(type => type.type)));
-      });
+      this.categoriesNom = ['Tous', ...Array.from(new Set(types.map(type => type.type)))];
+    });
   }
-  
+
   handleSearch(query: string): void {
     this.searchQuery = query;
     this.applyFilters();
   }
 
   handleCategorySelect(categoryNom: string): void {
-    this.selectedCategory = categoryNom ? categoryNom : null;
+    this.selectedCategory = categoryNom === 'Tous' ? null : categoryNom;
     this.applyFilters();
   }
+
 
   handleCompletedToggle(isCompleted: boolean): void {
     this.showCompleted = isCompleted;
@@ -75,17 +92,17 @@ export class AlgoComponent implements OnInit {
         ? algo.title.toLowerCase().includes(this.searchQuery.toLowerCase())
         : true;
 
-        let matchesCompletion = this.showCompleted ? algo.isVisible : true;
-        if(algo.type){
-            let matchesCategory = this.selectedCategory ? 
-            algo.type.some(type => type.type === this.selectedCategory) : true;
-          return matchesSearchQuery && matchesCategory && matchesCompletion;
-        }
-  
-      return matchesSearchQuery && matchesCompletion;
+      let matchesCompletion = this.showCompleted && algo.userAnswer
+        ? algo.userAnswer.some(answer => answer.userId === this.currentUser.id && answer.isRight)
+        : true;
+
+      let matchesCategory = this.selectedCategory
+        ? algo.type.some(type => type.type === this.selectedCategory)
+        : true;
+
+      return matchesSearchQuery && matchesCategory && matchesCompletion;
     });
 
     this.filteredAlgos = filtered;
   }
-
 }

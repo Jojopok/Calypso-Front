@@ -1,4 +1,5 @@
 import { Type } from "./type";
+import { UserAnswer } from "./UserAnswer";
 
 export interface Algo {
   id: number;
@@ -10,5 +11,6 @@ export interface Algo {
   updatedAt: Date;
   difficultyId: number;
   type: Type[];
+  userAnswer: UserAnswer[];
   userId: number;
 }
