@@ -13,7 +13,9 @@
                    [title]="algo.title"
                    [description]="algo.content"
                    [iconSrc]="getAlgoLogo(algo)"
-                   [footerColor]="getAlgoColor(algo)">
+                   [footerColor]="getAlgoColor(algo)"
+                   (click)="goToAlgo(algo.id)"
+    >
     </app-algo-card>
   </div>
 

@@ -14,5 +14,9 @@ export class AlgoService {
   getAlgos(): Observable<Algo[]> {
     return this.http.get<Algo[]>(this.apiUrl);
   }
+
+  getAlgoById(id: number): Observable<Algo> {
+    return this.http.get<Algo>(`${this.apiUrl}/${id}`);
+  }
 }
 

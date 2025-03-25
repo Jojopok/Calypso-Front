@@ -1,0 +1,40 @@
+@import '../../../../styles/variables';
+
+.algo-page {
+  background-color: $background-color;
+}
+
+.algo-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+}
+
+.algo-show {
+  color: white;
+
+  .content-area {
+    padding: 1rem;
+    background-color: #1e1e1e;
+    border-radius: 8px;
+
+    code {
+      background: #333;
+      color: #80ff80;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+    }
+
+    pre {
+      background: #272727;
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      color: #f8f8f8;
+    }
+
+    ul, ol {
+      margin-left: 1.5rem;
+    }
+  }
+}

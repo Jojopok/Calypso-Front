@@ -1,0 +1,22 @@
+<div class="algo-page p-5 h-100 ">
+  <div class="algo-header d-flex align-items-center">
+   <div class="d-flex align-items-center mb-4">
+      <app-icon
+        [iconSrc]="getAlgoLogo(algo)"
+        [altText]="getAlgoTitle(algo)"
+        [width]="50"
+        [height]="50"
+        class="me-3"
+      ></app-icon>
+
+      <app-title
+        [text]="getAlgoTitle(algo)"
+        fontSize="2.5rem"
+      ></app-title>
+    </div>
+  </div>
+
+  <div class="algo-show container py-5" *ngIf="algo">
+    <div class="ckeditor-content" [innerHTML]="safeContent"></div>
+  </div>
+</div>
