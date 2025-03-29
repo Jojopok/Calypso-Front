@@ -10,7 +10,7 @@
       </app-icon>
       <h5 class="card-title mb-0">{{ title }}</h5>
     </div>
-    <p class="card-text">{{ description }}</p>
+    <p class="card-text" [innerHTML]="description">{{ description }}</p>
   </div>
   <div class="card-footer" [ngStyle]="{'background-color': footerColor}"></div>
 </div>

@@ -11,35 +11,50 @@ import { TypeService } from '../../../services/type.service';
 import { MultiSelectComponent } from "../../atoms/multi-select/multi-select.component";
 import { AppToastService } from '../../../services/app-toast.service';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
-import { NgbRating, NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdownToggle, NgbRating, NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
+import { UserService } from '../../../services/user.service';
+import { User } from '../../../models/user';
 
 @Component({
   selector: 'app-new-algo',
   standalone: true,
-  imports: [CkeditorComponent, ButtonComponent, InputFieldComponent, SubtitleComponent, FormsModule, ReactiveFormsModule, MultiSelectComponent, NgbRating],
+  imports: [CkeditorComponent, ButtonComponent, InputFieldComponent, SubtitleComponent, FormsModule, ReactiveFormsModule, MultiSelectComponent, NgbRating, NgbDropdownToggle],
   providers: [NgbRatingConfig],
   templateUrl: './new-algo.component.html',
   styleUrl: './new-algo.component.scss'
 })
 export class NewAlgoComponent implements OnInit {
+  currentUser!: User;
   categories!: string[];
   categorie: string = '';
   selectedCategories!: string [];
-  isEdit: boolean = true;
-  algo!: Algo;
+  isEdit: boolean = false;
+  algo: Algo = new Algo(
+    0,
+    '',    // title
+    '',  // content
+    '',  // answer
+    true,                  // isVisible
+    new Date(),            // createdAt
+    null,            // updatedAt
+    0,                     // difficultyId
+    [],                    // type (tableau vide ou tableau de Type[])
+    [],                    // userAnswer (tableau vide ou tableau de UserAnswer[])
+    0                      // userId
+  );
   algoId!: number;
   
   title: string = '';
   types!: Type[];
   content: string = '';
   answer:string = '';
-  difficultyId!: number;
+  difficultyId: number = 0;
   selected!: number;
   hovered!: number;
 	readonly = false;
 
-  constructor(private algoService: AlgoService,
+  constructor(private userService : UserService,
+              private algoService: AlgoService,
               private typeService: TypeService, 
               private toastservice: AppToastService,
               private router: Router,
@@ -50,12 +65,15 @@ export class NewAlgoComponent implements OnInit {
 
   ngOnInit() {
     this.loadTypes();
-    this.isEdit ? this.loadAlgoData() : this.initForm();
+    this.currentUser = this.userService.getUser()();
   }
 
   loadTypes() {
+    console.log('Chargement des types');
     this.typeService.getTypes().subscribe((types) => {
       this.categories = types.map(type => type.type); 
+      this.types = types;
+      this.isEdit ? this.loadAlgoData() : this.initForm();
     });
   }
 
@@ -68,36 +86,12 @@ export class NewAlgoComponent implements OnInit {
       this.content = this.algo.content;
       this.answer = this.algo.answer;
       this.difficultyId = this.algo.difficultyId;
-      console.log('difficulté:', this.difficultyId);
       this.selectedCategories = this.algo.type.map(item => item.type);
     } else {
-      this.title = '';
-      this.types = [];
-      this.content = '';
-      this.answer = '';
-    }
-  }
-
-  // Méthode pour mettre à jour les données de l'algo
-  onAlgoChange(event: any, field: string): void {
-    const value = event.target.value;
-    
-    switch(field) {
-      case 'title':
-        this.algo.title = value;
-        break;
-      case 'content':
-        this.algo.content = value;
-        break;
-      case 'answer':
-        this.algo.answer = value;
-        break;
-      case 'difficultyId':
-        this.algo.difficultyId = value;
-        break;
-      case 'types':
-        this.algo.type = value;
-        break;
+      console.log('Initialisation du formulaire');
+      console.log('types',this.types)
+      this.algo.userId = this.currentUser.id;
+      this.selectedCategories = [];
     }
   }
 
@@ -110,9 +104,16 @@ export class NewAlgoComponent implements OnInit {
     });
   }
 
+  // Méthode pour mettre à jour les données de l'algo
+  onTitleChange(event: any): void {
+    console.log('Titre modifié:', event.target.value);
+    const value = event.target.value;
+    this.algo.title = value;
+  }
+
   onCategorieSelect(categories: string[]): void {
     console.log('Catégories sélectionnées:', categories);
-    this.categories = categories;
+    this.selectedCategories = categories;
     // Filtrer les types en fonction de la sélection des catégories
     this.algo.type = this.types.filter(type => {
       return categories.some(category => type.type.includes(category));
@@ -128,7 +129,7 @@ export class NewAlgoComponent implements OnInit {
   onRatingChange(rating: number): void {
     this.algo.difficultyId = rating;
     console.log('Difficulté sélectionnée:', this.algo.difficultyId);  
-  }
+  } 
 
   onSubmit() {
     if (this.isEdit) {
@@ -144,6 +145,7 @@ export class NewAlgoComponent implements OnInit {
         console.error('Erreur lors de la mise à jour de l\'algorithme', error);
       });
     } else {
+      console.log('Creation de l\'algorithme:', this.algo);
       this.algoService.addAlgo(this.algo).subscribe(
         response => {
           console.log('Nouvel algorithme ajouté:', response);
@@ -152,6 +154,7 @@ export class NewAlgoComponent implements OnInit {
         },
         error => {
           this.toastservice.showDanger('Erreur', 'Erreur lors de l\'ajout de l\'algorithme');
+          console.error('Erreur lors de la mise à jour de l\'algorithme', error);
         });
     }
   }

@@ -5,7 +5,7 @@
   </div>
 
   <div class="dropdown-list rounded position-absolute z-3 w-100"  *ngIf="isOpen">
-    <div *ngFor="let option of options" class="dropdown-option p-2"  (click)="onSelect(option)">
+    <div *ngFor="let option of options" class="dropdown-option p-2"  (click)="onSelect(option); $event.stopPropagation()">
       {{ option }}
     </div>
   </div>

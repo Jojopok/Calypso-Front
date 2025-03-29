@@ -28,8 +28,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 
 const LICENSE_KEY =
-	'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3NDEyMTkxOTksImp0aSI6ImIxZGNlMzA2LTIwZGMtNGFiOC04OWM1LWNjNDk5YTEyOWZjNSIsInVzYWdlRW5kcG9pbnQiOiJodHRwczovL3Byb3h5LWV2ZW50LmNrZWRpdG9yLmNvbSIsImRpc3RyaWJ1dGlvbkNoYW5uZWwiOlsiY2xvdWQiLCJkcnVwYWwiLCJzaCJdLCJ3aGl0ZUxhYmVsIjp0cnVlLCJsaWNlbnNlVHlwZSI6InRyaWFsIiwiZmVhdHVyZXMiOlsiKiJdLCJ2YyI6IjllYmQ4MmFhIn0.HebPCvw7VdQYNwDlK9OLjc6jkwdnLrzo2nBiPuMqf_LG-xWBogInYMNgM4w-HLmL8qSCkcOoPKEeFjHMyVHO6g';
-
+	'GPL'
 @Component({
   selector: 'app-ckeditor',
   standalone: true,
