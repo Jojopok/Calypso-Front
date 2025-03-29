@@ -73,7 +73,6 @@ export class UserProfileSectionComponent implements OnInit {
       case 'odysseyLink':
         this.odysseyLink = value;
         break;
-      // Ne rien faire pour 'role' si c'est désactivé
     }
 
     // Notifier le subject pour déclencher l'appel après un délai

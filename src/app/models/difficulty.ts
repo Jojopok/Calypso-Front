@@ -1,4 +1,8 @@
-export interface Difficulty {
+export class Difficulty {
   id: number;
-  name: string; // 🔥 Nom de la difficulté (ex: Facile, Moyen, Difficile)
+  name: string; 
+  constructor( id: number, name: string) {
+    this.id = id;
+    this.name = name;
+  }
 }

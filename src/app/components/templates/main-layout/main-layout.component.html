@@ -1,6 +1,7 @@
 <div class="layout">
   <app-side-navbar (toggle)="updateCollapseState($event)"></app-side-navbar>
-  <div class="page-content" [ngClass]="{ 'collapsed': isCollapsed, 'expanded': !isCollapsed }">
+  <div class="page-content" 
+    [ngClass]="{ 'collapsed': isCollapsed, 'expanded': !isCollapsed }">
     <router-outlet></router-outlet> 
   </div>
 </div>
