@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, type AfterViewInit } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, Output, type AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
 	type EditorConfig,
@@ -28,8 +28,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 
 const LICENSE_KEY =
-	'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3NDEyMTkxOTksImp0aSI6ImIxZGNlMzA2LTIwZGMtNGFiOC04OWM1LWNjNDk5YTEyOWZjNSIsInVzYWdlRW5kcG9pbnQiOiJodHRwczovL3Byb3h5LWV2ZW50LmNrZWRpdG9yLmNvbSIsImRpc3RyaWJ1dGlvbkNoYW5uZWwiOlsiY2xvdWQiLCJkcnVwYWwiLCJzaCJdLCJ3aGl0ZUxhYmVsIjp0cnVlLCJsaWNlbnNlVHlwZSI6InRyaWFsIiwiZmVhdHVyZXMiOlsiKiJdLCJ2YyI6IjllYmQ4MmFhIn0.HebPCvw7VdQYNwDlK9OLjc6jkwdnLrzo2nBiPuMqf_LG-xWBogInYMNgM4w-HLmL8qSCkcOoPKEeFjHMyVHO6g';
-
+	'GPL'
 @Component({
   selector: 'app-ckeditor',
   standalone: true,
@@ -39,6 +38,8 @@ const LICENSE_KEY =
 })
 export class CkeditorComponent implements AfterViewInit {
 	constructor(private changeDetector: ChangeDetectorRef) {}
+	@Input() data: string = '';
+	@Output() dataChange: EventEmitter<string> = new EventEmitter<string>();
 
 	public isLayoutReady = false;
 	public Editor = ClassicEditor;
@@ -130,7 +131,7 @@ export class CkeditorComponent implements AfterViewInit {
 					}
 				]
 			},
-			initialData:'',
+			initialData: this.data,
 			licenseKey: LICENSE_KEY,
 			link: {
 				addTargetToExternalLinks: true,
@@ -153,5 +154,11 @@ export class CkeditorComponent implements AfterViewInit {
 
 		this.isLayoutReady = true;
 		this.changeDetector.detectChanges();
+	}
+	
+	// Émettre les données lorsqu'elles sont modifiées dans CKEditor
+	onEditorChange(event: any): void {
+		console.log('Editor change event', event);
+		this.dataChange.emit(event.editor.getData());
 	}
 }

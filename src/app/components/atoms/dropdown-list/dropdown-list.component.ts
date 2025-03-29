@@ -23,6 +23,4 @@ export class DropdownListComponent {
     this.isOpen = false;
     this.valueSelected.emit(option);
   }
-
-
 }
