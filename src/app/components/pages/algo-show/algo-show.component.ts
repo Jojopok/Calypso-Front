@@ -20,7 +20,6 @@ import { UserAnswer } from '../../../models/user-answer';
   standalone: true,
   imports: [
     CommonModule,
-    TextComponent,
     IconComponent,
     TitleComponent,
     SubtitleComponent,
@@ -32,14 +31,12 @@ import { UserAnswer } from '../../../models/user-answer';
 })
 export class AlgoShowComponent implements OnInit {
   algo?: Algo;
-  safeContent!: SafeHtml;
   userAnswer: string = '';
   user!: User;
 
   constructor(
     private route: ActivatedRoute,
     private algoService: AlgoService,
-    private sanitizer: DomSanitizer,
     private userService: UserService,
     private userAnswerService: UserAnswerService
   ) {}
@@ -51,7 +48,6 @@ export class AlgoShowComponent implements OnInit {
       this.algoService.getAlgoById(id).subscribe({
         next: (data) => {
           this.algo = data;
-          this.safeContent = this.sanitizer.bypassSecurityTrustHtml(data.content);
         },
         error: (err) => console.error('Erreur chargement algo:', err)
       });

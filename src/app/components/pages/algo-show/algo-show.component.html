@@ -18,14 +18,13 @@
 
   <!-- ✅ AFFICHAGE ENONCÉ -->
   <div class="algo-show container py-5" *ngIf="algo">
-    <div class="ckeditor-content" [innerHTML]="safeContent"></div>
+    <div class="ckeditor-content" [innerHTML]="algo.content"></div>
   </div>
 
-  <div class="mt-5 user-editor-container">
+  <div class="mt-5">
     <app-subtitle [text]="'Votre réponse'"></app-subtitle>
 
     <app-ckeditor
-      [data]="userAnswer"
       (dataChange)="onUserAnswerChange($event)">
     </app-ckeditor>
 
