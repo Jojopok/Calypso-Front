@@ -1,22 +1,31 @@
 <div class="algo-page p-5">
-  <div class="algo-header d-flex align-items-center">
-    <div class="d-flex align-items-center mb-4">
+
+  <div class="algo-header d-flex align-items-center justify-content-between mb-4">
+    <div class="d-flex align-items-center">
       <app-icon
         [iconSrc]="getAlgoLogo(algo)"
         [altText]="getAlgoTitle(algo)"
         [width]="50"
         [height]="50"
-        class="me-3"
-      ></app-icon>
+        class="me-3">
+      </app-icon>
 
       <app-title
         [text]="getAlgoTitle(algo)"
-        fontSize="2.5rem"
-      ></app-title>
+        fontSize="2.5rem">
+      </app-title>
     </div>
+
+    <div *ngIf="isAdmin">
+      <app-button
+        [label]="'✏️ Éditer'"
+        buttonType="secondary"
+        (click)="goToEditAlgo()">
+      </app-button>
+    </div>
+
   </div>
 
-  <!-- ✅ AFFICHAGE ENONCÉ -->
   <div class="algo-show container py-5" *ngIf="algo">
     <div class="ckeditor-content" [innerHTML]="algo.content"></div>
   </div>

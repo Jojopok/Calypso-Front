@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AlgoService } from '../../../services/algo.service';
 import { Algo } from '../../../models/algo';
-import { TextComponent } from '../../atoms/text/text.component';
 import { IconComponent } from '../../atoms/icon/icon.component';
 import { TitleComponent } from '../../atoms/title/title.component';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { SubtitleComponent } from '../../atoms/subtitle/subtitle.component';
 import { CkeditorComponent } from '../../atoms/ckeditor/ckeditor.component';
 import { ButtonComponent } from '../../atoms/button/button.component';
@@ -14,6 +12,7 @@ import { UserService } from '../../../services/user.service';
 import { User } from '../../../models/user';
 import { UserAnswerService } from '../../../services/user-answer.service';
 import { UserAnswer } from '../../../models/user-answer';
+import {AppToastService} from "../../../services/app-toast.service";
 
 @Component({
   selector: 'app-algo-show',
@@ -38,7 +37,9 @@ export class AlgoShowComponent implements OnInit {
     private route: ActivatedRoute,
     private algoService: AlgoService,
     private userService: UserService,
-    private userAnswerService: UserAnswerService
+    private userAnswerService: UserAnswerService,
+    private router: Router,
+    private toastservice: AppToastService
   ) {}
 
   ngOnInit(): void {
@@ -50,6 +51,18 @@ export class AlgoShowComponent implements OnInit {
           this.algo = data;
         },
         error: (err) => console.error('Erreur chargement algo:', err)
+      });
+    }
+  }
+
+  get isAdmin(): boolean {
+    return this.user.roles?.includes('ADMIN');
+  }
+
+  goToEditAlgo(): void {
+    if (this.algo) {
+      this.router.navigate(['/editAlgo'], {
+        queryParams: { id: this.algo.id }
       });
     }
   }
@@ -83,9 +96,12 @@ export class AlgoShowComponent implements OnInit {
     this.userAnswerService.addUserAnswer(answerPayload).subscribe({
       next: (res) => {
         console.log('✅ Réponse soumise avec succès', res);
+        this.toastservice.showSuccess('Bravo', 'Votre réponse a bien été enregistrée');
+        this.router.navigate(['/algo']);
       },
       error: (err) => {
         console.error('❌ Erreur lors de l’envoi de la réponse', err);
+        this.toastservice.showSuccess('Erreur', "Votre réponse n'a pas pu être enregistrée");
       }
     });
   }
