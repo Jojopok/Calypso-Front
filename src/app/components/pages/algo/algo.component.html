@@ -11,7 +11,7 @@
   <div class="algo-grid">
     <app-algo-card *ngFor="let algo of filteredAlgos"
                    [title]="algo.title"
-                   [description]="algo.content"
+                   [description]="stripHtmlAndTruncate(algo.content)"
                    [iconSrc]="getAlgoLogo(algo)"
                    [footerColor]="getAlgoColor(algo)"
                    (click)="goToAlgo(algo.id)"

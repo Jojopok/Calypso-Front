@@ -43,6 +43,14 @@ export class AlgoComponent implements OnInit {
     this.loadTypes();
   }
 
+  stripHtmlAndTruncate(html: string, maxLength: number = 150): string {
+    const div = document.createElement('div');
+    div.innerHTML = html;
+    const text = div.textContent || div.innerText || '';
+    return text.length > maxLength ? text.slice(0, maxLength).trim() + '…' : text;
+  }
+
+
   loadAlgos(): void {
     this.algoService.getAlgos().subscribe(
       (algos: Algo[]) => {

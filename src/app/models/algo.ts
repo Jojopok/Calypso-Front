@@ -1,5 +1,5 @@
 import { Type } from "./type";
-import { UserAnswer } from "./UserAnswer";
+import { UserAnswer } from "./user-answer";
 
 export class Algo {
   id: number;

@@ -1,6 +1,6 @@
-<div class="algo-page p-5 h-100 ">
+<div class="algo-page p-5">
   <div class="algo-header d-flex align-items-center">
-   <div class="d-flex align-items-center mb-4">
+    <div class="d-flex align-items-center mb-4">
       <app-icon
         [iconSrc]="getAlgoLogo(algo)"
         [altText]="getAlgoTitle(algo)"
@@ -16,7 +16,26 @@
     </div>
   </div>
 
+  <!-- ✅ AFFICHAGE ENONCÉ -->
   <div class="algo-show container py-5" *ngIf="algo">
     <div class="ckeditor-content" [innerHTML]="safeContent"></div>
   </div>
+
+  <div class="mt-5 user-editor-container">
+    <app-subtitle [text]="'Votre réponse'"></app-subtitle>
+
+    <app-ckeditor
+      [data]="userAnswer"
+      (dataChange)="onUserAnswerChange($event)">
+    </app-ckeditor>
+
+    <div class="mt-4 text-end">
+      <app-button
+        [label]="'Envoyer ma réponse'"
+        buttonType="submit"
+        (click)="submitUserAnswer()">
+      </app-button>
+    </div>
+  </div>
+
 </div>

@@ -1,8 +1,19 @@
 @import '../../../../styles/variables';
 
+::ng-deep .ck-editor__editable {
+  direction: ltr !important;
+  text-align: left !important;
+}
+
+::ng-deep .ck-editor__editable * {
+  direction: ltr !important;
+  text-align: left !important;
+}
+
 .algo-page {
   background-color: $background-color;
 }
+
 
 .algo-header {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
