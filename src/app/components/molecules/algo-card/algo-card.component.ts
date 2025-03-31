@@ -26,9 +26,4 @@ export class AlgoCardComponent {
   @Input() footerColor: string = '#1976d2';
   @Input() cardClasses: string[] = ['bg-dark', 'text-white'];
   @Input() iconSize: number = 32;
-
-  onClick() {
-    // Logique de navigation ou d'affichage de l'algo
-    console.log(`Clicked on: ${this.title}`);
-  }
 }
