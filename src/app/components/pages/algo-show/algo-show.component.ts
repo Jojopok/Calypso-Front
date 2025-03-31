@@ -62,7 +62,7 @@ export class AlgoShowComponent implements OnInit {
   goToEditAlgo(): void {
     if (this.algo) {
       this.router.navigate(['/editAlgo'], {
-        queryParams: { id: this.algo.id }
+        queryParams: { isEdit: true, id: this.algo.id }
       });
     }
   }
@@ -95,7 +95,6 @@ export class AlgoShowComponent implements OnInit {
 
     this.userAnswerService.addUserAnswer(answerPayload).subscribe({
       next: (res) => {
-        console.log('✅ Réponse soumise avec succès', res);
         this.toastservice.showSuccess('Bravo', 'Votre réponse a bien été enregistrée');
         this.router.navigate(['/algo']);
       },

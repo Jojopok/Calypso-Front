@@ -27,7 +27,6 @@ export class NavListComponent {
    * Méthode pour gérer la déconnexion
    */
   logout(): void {
-    console.log('Déconnexion en cours...');
     this.authService.logout();
     this.router.navigate(['/login']);
   }

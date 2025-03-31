@@ -60,7 +60,6 @@ export class AuthService {
   // Supprimer le token pour déconnecter l'utilisateur
   logout(): void {
     localStorage.removeItem(this.tokenKey);
-    console.log('Utilisateur déconnecté.');
   }
 
   register(user: User): Observable<any> {

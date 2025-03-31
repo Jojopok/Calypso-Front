@@ -10,7 +10,7 @@ import { Type } from '../../../models/type';
 import { TypeService } from '../../../services/type.service';
 import { MultiSelectComponent } from "../../atoms/multi-select/multi-select.component";
 import { AppToastService } from '../../../services/app-toast.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { NgbDropdownToggle, NgbRating, NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from '../../../services/user.service';
 import { User } from '../../../models/user';
@@ -58,18 +58,23 @@ export class NewAlgoComponent implements OnInit {
               private typeService: TypeService, 
               private toastservice: AppToastService,
               private router: Router,
+              private route: ActivatedRoute,
               config: NgbRatingConfig
   ) {
     config.max = 5;
   }
 
   ngOnInit() {
-    this.loadTypes();
-    this.currentUser = this.userService.getUser()();
+    this.route.queryParams.subscribe((params: Params) => {
+      this.isEdit = params['isEdit'] === 'true';
+      this.algoId = params['id'];
+  
+      this.currentUser = this.userService.getUser()();
+      this.loadTypes();
+    });
   }
 
   loadTypes() {
-    console.log('Chargement des types');
     this.typeService.getTypes().subscribe((types) => {
       this.categories = types.map(type => type.type); 
       this.types = types;
@@ -79,8 +84,7 @@ export class NewAlgoComponent implements OnInit {
 
   // Initialisation du formulaire
   initForm(): void {
-    if(this.isEdit) {
-    console.log('Initialisation du formulaire');
+    if(this.isEdit && this.algoId) {
       this.title = this.algo.title;
       this.types = this.algo.type;
       this.content = this.algo.content;
@@ -88,8 +92,6 @@ export class NewAlgoComponent implements OnInit {
       this.difficultyId = this.algo.difficultyId;
       this.selectedCategories = this.algo.type.map(item => item.type);
     } else {
-      console.log('Initialisation du formulaire');
-      console.log('types',this.types)
       this.algo.userId = this.currentUser.id;
       this.selectedCategories = [];
     }
@@ -97,8 +99,7 @@ export class NewAlgoComponent implements OnInit {
 
   // Fonction pour charger l'algorithme existant (si en mode édition)
   loadAlgoData() {
-    console.log('Chargement des données de l\'algorithme');
-    this.algoService.getAlgoById(2).subscribe(algo => {
+    this.algoService.getAlgoById(this.algoId).subscribe(algo => {
       this.algo = algo;
       this.initForm();
     });
@@ -106,55 +107,44 @@ export class NewAlgoComponent implements OnInit {
 
   // Méthode pour mettre à jour les données de l'algo
   onTitleChange(event: any): void {
-    console.log('Titre modifié:', event.target.value);
     const value = event.target.value;
     this.algo.title = value;
   }
 
   onCategorieSelect(categories: string[]): void {
-    console.log('Catégories sélectionnées:', categories);
     this.selectedCategories = categories;
     // Filtrer les types en fonction de la sélection des catégories
     this.algo.type = this.types.filter(type => {
       return categories.some(category => type.type.includes(category));
     });
-    console.log('Types sélectionnés:', this.algo.type);
   }
 
   onDataChange(newData: string, field: string): void {
     field == 'content' ? this.algo.content = newData : this.algo.answer = newData;
-    console.log('Données modifiées:', field, newData);
   }
 
   onRatingChange(rating: number): void {
     this.algo.difficultyId = rating;
-    console.log('Difficulté sélectionnée:', this.algo.difficultyId);  
   } 
 
   onSubmit() {
     if (this.isEdit) {
-      console.log('Mise à jour de l\'algorithme:', this.algo);
       this.algoService.updateAlgo(this.algo).subscribe(
         response => {
           this.toastservice.showSuccess('Bravo', 'Algorithme modifié avec succès');
           this.router.navigate(['/algo']);
-        console.log('Algorithme mis à jour:', response);
       },
       error => {
         this.toastservice.showDanger('Erreur', 'Erreur lors de la moification de l\'algorithme');
-        console.error('Erreur lors de la mise à jour de l\'algorithme', error);
       });
     } else {
-      console.log('Creation de l\'algorithme:', this.algo);
       this.algoService.addAlgo(this.algo).subscribe(
         response => {
-          console.log('Nouvel algorithme ajouté:', response);
           this.toastservice.showSuccess('Bravo', 'Algorithme ajouté avec succès');
           this.router.navigate(['/algo']);
         },
         error => {
           this.toastservice.showDanger('Erreur', 'Erreur lors de l\'ajout de l\'algorithme');
-          console.error('Erreur lors de la mise à jour de l\'algorithme', error);
         });
     }
   }
