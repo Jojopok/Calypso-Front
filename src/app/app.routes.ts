@@ -11,7 +11,7 @@ import { BugComponent } from './components/pages/bug/bug.component';
 import { NewAlgoComponent } from './components/pages/new-algo/new-algo.component';
 
 export const appRoutes: Routes = [
-  // Pages sans layout 
+  // Pages sans layout
   { path: '', component: LandingPageComponent }, // Page d'accueil/ connexion
   { path: 'register', component: RegisterPageComponent }, // Page d'inscription
 
@@ -22,7 +22,11 @@ export const appRoutes: Routes = [
     children: [
       { path: 'home', component: HomePageComponent }, // Page d'accueil après connexion
       { path: 'profil', component: UserProfileComponent }, // Page de profil utilisateur
-      { path: 'algo', component: AlgoComponent }, // Page mes algorithmeq
+      { path: 'algo', component: AlgoComponent }, // Page mes algorithme
+      {
+        path: 'algo/:id',
+        loadComponent: () => import('./components/pages/algo-show/algo-show.component').then(m => m.AlgoShowComponent)
+      },
       { path: 'editAlgo', component: NewAlgoComponent }, // Page edit/new algorithme
       { path: 'admin', component: AdminComponent }, // Page administrateur
       { path: 'droits', component: AdminUsersComponent }, // Page d'amdinistration des utilisateurs

@@ -9,6 +9,7 @@ import {AlgoCardComponent} from "../../molecules/algo-card/algo-card.component";
 import {NgForOf} from "@angular/common";
 import {UserService} from "../../../services/user.service";
 import {User} from "../../../models/user";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-algo',
@@ -33,7 +34,7 @@ export class AlgoComponent implements OnInit {
   currentUser!: User;
   userRole!: string;
 
-  constructor(private algoService: AlgoService, private typeService: TypeService, private userService: UserService) {}
+  constructor(private algoService: AlgoService, private typeService: TypeService, private userService: UserService, private router: Router ) {}
 
   ngOnInit() {
     this.currentUser = this.userService.getUser()();
@@ -41,6 +42,15 @@ export class AlgoComponent implements OnInit {
     this.loadAlgos();
     this.loadTypes();
   }
+
+  stripHtmlAndTruncate(html: string, maxLength: number = 120): string {
+    const div = document.createElement('div');
+    div.innerHTML = html;
+    const text = div.textContent || div.innerText || '';
+    return text.length > maxLength ? text.slice(0, maxLength).trim() + '…' : text;
+  }
+
+
 
   loadAlgos(): void {
     this.algoService.getAlgos().subscribe(
@@ -104,5 +114,9 @@ export class AlgoComponent implements OnInit {
     });
 
     this.filteredAlgos = filtered;
+  }
+
+  goToAlgo(id: number): void {
+    this.router.navigate(['/algo', id]);
   }
 }

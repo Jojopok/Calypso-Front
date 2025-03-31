@@ -1,4 +1,4 @@
-<div class="algo-page p-5 h-100 ">
+<div class="algo-page p-5">
   <app-filter-bar
     [userRole]="userRole"
     [options]="categoriesNom"
@@ -13,7 +13,9 @@
                    [title]="algo.title"
                    [description]="algo.content"
                    [iconSrc]="getAlgoLogo(algo)"
-                   [footerColor]="getAlgoColor(algo)">
+                   [footerColor]="getAlgoColor(algo)"
+                   (click)="goToAlgo(algo.id)"
+    >
     </app-algo-card>
   </div>
 

@@ -27,5 +27,6 @@ export class AlgoService {
     console.log(algo);
     return this.http.put<Algo>(`${this.apiUrl}/${algo.id}`, algo);
   }
+
 }
 
