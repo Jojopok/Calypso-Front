@@ -1,7 +1,7 @@
 export interface UserAnswer {
-  id: number;
-  content: string | null;
+  id?: number;
+  content: string;
   isRight: boolean;
-  algoId: number;
   userId: number;
+  algoId: number;
 }
