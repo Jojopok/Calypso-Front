@@ -1,4 +1,4 @@
-<div class="algo-page p-5 ">
+<div class="algo-page p-5">
   <app-filter-bar
     [userRole]="userRole"
     [options]="categoriesNom"
@@ -11,7 +11,7 @@
   <div class="algo-grid">
     <app-algo-card *ngFor="let algo of filteredAlgos"
                    [title]="algo.title"
-                   [description]="stripHtmlAndTruncate(algo.content)"
+                   [description]="algo.content"
                    [iconSrc]="getAlgoLogo(algo)"
                    [footerColor]="getAlgoColor(algo)"
                    (click)="goToAlgo(algo.id)"
