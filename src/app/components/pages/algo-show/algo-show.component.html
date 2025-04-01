@@ -1,0 +1,49 @@
+<div class="algo-page p-5">
+
+  <div class="algo-header d-flex align-items-center justify-content-between mb-4">
+    <div class="d-flex align-items-center">
+      <app-icon
+        [iconSrc]="getAlgoLogo(algo)"
+        [altText]="getAlgoTitle(algo)"
+        [width]="50"
+        [height]="50"
+        class="me-3">
+      </app-icon>
+
+      <app-title
+        [text]="getAlgoTitle(algo)"
+        fontSize="2.5rem">
+      </app-title>
+    </div>
+
+    <div *ngIf="isAdmin">
+      <app-button
+        [label]="'✏️ Éditer'"
+        buttonType="secondary"
+        (click)="goToEditAlgo()">
+      </app-button>
+    </div>
+
+  </div>
+
+  <div class="algo-show container py-5" *ngIf="algo">
+    <div class="ckeditor-content" [innerHTML]="algo.content"></div>
+  </div>
+
+  <div class="mt-5">
+    <app-subtitle [text]="'Votre réponse'"></app-subtitle>
+
+    <app-ckeditor
+      (dataChange)="onUserAnswerChange($event)">
+    </app-ckeditor>
+
+    <div class="mt-4 text-end">
+      <app-button
+        [label]="'Envoyer ma réponse'"
+        buttonType="submit"
+        (click)="submitUserAnswer()">
+      </app-button>
+    </div>
+  </div>
+
+</div>

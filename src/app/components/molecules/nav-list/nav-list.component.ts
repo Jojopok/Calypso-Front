@@ -19,11 +19,14 @@ export class NavListComponent {
               private router: Router
   ) {}
   
+  isActive(route: any): boolean {
+    return this.router.isActive(route, true);
+  }
+
   /**
    * Méthode pour gérer la déconnexion
    */
   logout(): void {
-    console.log('Déconnexion en cours...');
     this.authService.logout();
     this.router.navigate(['/login']);
   }

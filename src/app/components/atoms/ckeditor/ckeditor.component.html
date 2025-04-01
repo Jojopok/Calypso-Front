@@ -1,0 +1,9 @@
+<div class="main-container">
+	<div class="editor-container editor-container_classic-editor" #editorContainerElement>
+		<div class="editor-container__editor">
+			<div #editorElement>
+				<ckeditor [editor]="Editor" [config]="config" *ngIf="isLayoutReady" [data]="data" (change)="onEditorChange($event)"/>
+			</div>
+		</div>
+	</div>
+</div>

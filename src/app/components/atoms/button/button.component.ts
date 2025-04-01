@@ -10,6 +10,6 @@ import { Component, input, Input } from '@angular/core';
 })
 export class ButtonComponent {
   @Input() label: string = '';
-  @Input() buttonType: 'primary' | 'secondary' = 'primary';
+  @Input() buttonType: 'primary' | 'secondary' | 'submit' = 'primary';
   @Input() type:'button' | 'submit' = 'button';
 }

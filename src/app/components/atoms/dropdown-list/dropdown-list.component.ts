@@ -10,17 +10,17 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class DropdownListComponent {
   @Input() options: any[] = [];
-  @Input() selectedValue: string = '';    
-  @Input() placeholder: string = '';    
+  @Input() selectedValue: string = '';
+  @Input() placeholder: string = '';
 
   @Output() valueSelected = new EventEmitter<any>();
-  
-  isOpen: boolean = false; 
+
+  isOpen: boolean = false;
 
   // Méthode appelée lorsqu'une option est sélectionnée
-  onSelect(value: any): void {
-    this.selectedValue = value;
-    this.isOpen = false;  // Fermer la liste
-    this.valueSelected.emit(value); // Émet la valeur sélectionnée vers le parent
+  onSelect(option: { name: string; value: string }): void {
+    this.selectedValue = option.name;
+    this.isOpen = false;
+    this.valueSelected.emit(option);
   }
 }

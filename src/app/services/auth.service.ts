@@ -1,16 +1,16 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
-import { jwtDecode } from 'jwt-decode'; 
 import { User } from '../models/user';
 import { UserService } from './user.service';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private tokenKey = 'authToken';
-  private apiUrl = 'http://localhost:8080/auth';
+   private apiUrl = environment.apiUrl + '/auth';
   private readonly userService = inject(UserService);
 
   constructor(private http: HttpClient) {}
@@ -60,7 +60,6 @@ export class AuthService {
   // Supprimer le token pour déconnecter l'utilisateur
   logout(): void {
     localStorage.removeItem(this.tokenKey);
-    console.log('Utilisateur déconnecté.');
   }
 
   register(user: User): Observable<any> {

@@ -1,5 +1,5 @@
 <div class="custom-input-container position-relative">
-  <label [for]="fieldId" class="custom-label position-absolute">{{ label }}</label>
+  <label [for]="fieldId" [ngClass]="backgroundColor" class="custom-label position-absolute">{{ label }}</label>
   <input 
   class="custom-input rounded p-3 w-100 "
   [id]="fieldId" 
