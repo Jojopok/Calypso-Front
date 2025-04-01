@@ -4,7 +4,7 @@ import { InputFieldComponent } from '../../atoms/input-field/input-field.compone
 import { UserService } from '../../../services/user.service';
 import { SubtitleComponent } from '../../atoms/subtitle/subtitle.component';
 import { User } from '../../../models/user';
-import { UserUpdateDTO } from '../../../models/userUpdateDTO';
+import { UserUpdate } from '../../../models/userUpdate';
 import { debounceTime, Subject, switchMap } from 'rxjs';
 import { AppToastService } from '../../../services/app-toast.service';
 
@@ -81,7 +81,7 @@ export class UserProfileSectionComponent implements OnInit {
 
   // Méthode appelée à chaque changement de valeur d'un input
   updateUserProfile(): void {
-    const updatedUser: UserUpdateDTO = {
+    const updatedUser: UserUpdate = {
       firstName: this.firstName,
       lastName: this.lastName,
       phoneNumber: this.phoneNumber,
