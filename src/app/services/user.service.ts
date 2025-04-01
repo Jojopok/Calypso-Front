@@ -3,12 +3,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, Observable, tap } from 'rxjs';
 import { User } from '../models/user';
 import { UserUpdateDTO } from '../models/userUpdateDTO';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = 'http://localhost:8080/users';
+  private apiUrl = environment.apiUrl + '/users';
   private userSignal = signal<User | null>(null);
 
   constructor(private http: HttpClient) {}

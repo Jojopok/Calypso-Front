@@ -3,12 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Promo } from '../models/promo';
 import { User } from '../models/user';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PromoService {
-  private apiUrl = 'http://localhost:8080/promos';  // URL de l'API pour récupérer les promos
+  private apiUrl = environment.apiUrl + '/promos';  // URL de l'API pour récupérer les promos
 
   constructor(private http: HttpClient) { }
 
