@@ -57,7 +57,7 @@ jobs:
 
       - name: 🗂️ Préparer les fichiers à transférer
         run: |
-          mkdir -p deploy/browser
+          mkdir -p deploy/dist
           cp -r dist/calypso-front/browser/* deploy/browser/
           cp nginx.conf Dockerfile deploy/
 
