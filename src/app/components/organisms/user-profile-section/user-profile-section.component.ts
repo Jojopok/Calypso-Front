@@ -4,7 +4,6 @@ import { InputFieldComponent } from '../../atoms/input-field/input-field.compone
 import { UserService } from '../../../services/user.service';
 import { SubtitleComponent } from '../../atoms/subtitle/subtitle.component';
 import { User } from '../../../models/user';
-import { UserUpdateDTO } from '../../../models/userUpdateDTO';
 import { debounceTime, Subject, switchMap } from 'rxjs';
 import { AppToastService } from '../../../services/app-toast.service';
 
@@ -81,12 +80,14 @@ export class UserProfileSectionComponent implements OnInit {
 
   // Méthode appelée à chaque changement de valeur d'un input
   updateUserProfile(): void {
-    const updatedUser: UserUpdateDTO = {
+    const updatedUser: User = {
+      id: this.currentUser.id,
       firstName: this.firstName,
       lastName: this.lastName,
       phoneNumber: this.phoneNumber,
       email: this.email,
-      odysseyLink: this.odysseyLink
+      odysseyLink: this.odysseyLink,
+      roles: this.currentUser.roles
     };
 
     // Appeler le service pour mettre à jour l'utilisateur

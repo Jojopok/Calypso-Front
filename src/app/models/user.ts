@@ -9,8 +9,8 @@ export class User {
     odysseyLink?: string;
     roles: string[];
     avatarUrl?: string;
-    promos: Promo[];
-    fullName: string;
+    promos?: Promo[];
+    fullName?: string;
 
     constructor(
         id: number,
