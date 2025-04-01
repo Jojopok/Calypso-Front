@@ -57,8 +57,8 @@ jobs:
 
       - name: 🗂️ Préparer les fichiers à transférer
         run: |
-          mkdir -p deploy/dist
-          cp -r dist/calypso-front/browser/* deploy/browser/
+          mkdir -p deploy/dist/calypso-front
+          cp -r dist/calypso-front/browser deploy/dist/calypso-front/
           cp nginx.conf Dockerfile deploy/
 
       - name: 🔐 Ajouter la clé SSH
