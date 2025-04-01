@@ -93,3 +93,4 @@ jobs:
               --label traefik.http.services.calypso.loadbalancer.server.port=80 \
               --network traefik \
               ${{ secrets.PROJECT_NAME }}
+              "
