@@ -86,8 +86,7 @@ export class UserProfileSectionComponent implements OnInit {
       lastName: this.lastName,
       phoneNumber: this.phoneNumber,
       email: this.email,
-      odysseyLink: this.odysseyLink,
-      roles: this.currentUser.roles
+      odysseyLink: this.odysseyLink
     };
 
     // Appeler le service pour mettre à jour l'utilisateur
