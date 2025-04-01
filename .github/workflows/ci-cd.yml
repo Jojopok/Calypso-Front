@@ -85,5 +85,11 @@ jobs:
             docker stop ${{ secrets.PROJECT_NAME }} || true &&
             docker rm ${{ secrets.PROJECT_NAME }} || true &&
             docker build -t ${{ secrets.PROJECT_NAME }} . &&
-            docker run -d --name ${{ secrets.PROJECT_NAME }} -p 3001:80 ${{ secrets.PROJECT_NAME }}
-          "
+            docker run -d --name ${{ secrets.PROJECT_NAME }} \
+              --label traefik.enable=true \
+              --label 'traefik.http.routers.calypso.rule=Host(\"calypso.wcs-students.fr\")' \
+              --label traefik.http.routers.calypso.entrypoints=websecure \
+              --label traefik.http.routers.calypso.tls.certresolver=letsencrypt \
+              --label traefik.http.services.calypso.loadbalancer.server.port=80 \
+              --network traefik \
+              ${{ secrets.PROJECT_NAME }}
