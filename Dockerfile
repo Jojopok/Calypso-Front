@@ -7,4 +7,4 @@ RUN rm -f /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copie les fichiers Angular buildés dans Nginx
-COPY dist/calypso-front/browser /usr/share/nginx/html
+COPY ./dist/calypso-front/browser /usr/share/nginx/html
