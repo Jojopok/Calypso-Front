@@ -20,7 +20,10 @@ export class DropdownListComponent {
   // Méthode appelée lorsqu'une option est sélectionnée
   onSelect(option: { name: string; value: string }): void {
     this.selectedValue = option.name;
-    this.isOpen = false;
     this.valueSelected.emit(option);
   }
+
+  toggleDropdown(): void {
+  this.isOpen = !this.isOpen;
+}
 }
