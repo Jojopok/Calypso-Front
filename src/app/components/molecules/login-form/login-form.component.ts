@@ -34,6 +34,8 @@ export class LoginFormComponent {
   }
 
   onSubmit(): void {
+    this.loginForm.markAllAsTouched();
+    
     if (this.loginForm.valid) {
       const credentials = this.loginForm.value;
       this.authService.login(credentials).subscribe({
