@@ -8,10 +8,9 @@
     label="Votre adresse mail :" 
     fieldId="email" 
     type="email" 
-    formControlName="email"
-    [ngClass]="{'error-border': email?.invalid && (email?.touched || email?.dirty)}">
+    formControlName="email">
   </app-input-field>
-  <div *ngIf="email?.invalid && (email?.touched || email?.dirty)" class="error-message w-75 mb-2">
+  <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="error-message">
     <div *ngIf="email?.errors?.['required']">L'email est obligatoire</div>
     <div *ngIf="email?.errors?.['email']">Veuillez entrer une adresse email valide</div>
   </div>
@@ -22,13 +21,21 @@
     label="Mot de passe :" 
     fieldId="password" 
     type="password" 
-    formControlName="password"
-    [ngClass]="{'error-border': password?.invalid && (password?.touched || password?.dirty)}">
+    formControlName="password">
   </app-input-field>
-  <div *ngIf="password?.invalid && (password?.touched || password?.dirty)" class="error-message w-75 mb-2">
+  <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="error-message">
     <div *ngIf="password?.errors?.['required']">Le mot de passe est obligatoire</div>
+    <div *ngIf="password?.errors?.['minlength']">Le mot de passe doit contenir au moins 8 caractères</div>
+    <div *ngIf="password?.errors?.['pattern']">
+        Le mot de passe doit contenir au moins:
+        <ul>
+            <li>Une lettre majuscule</li>
+            <li>Une lettre minuscule</li>
+            <li>Un chiffre</li>
+            <li>Un caractère spécial</li>
+        </ul>
+    </div>
   </div>
-
   <a class="m-3" href="#">Mot de passe oublié ?</a>
   
   <app-button 
