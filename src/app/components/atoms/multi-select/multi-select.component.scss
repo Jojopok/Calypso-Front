@@ -1,7 +1,15 @@
+@import '../../../../styles/variables';
+
 .arrow {
     cursor: pointer;
 }
 
 input {
     cursor: pointer;
+}
+.dropdown-option {
+    cursor: pointer;
+}
+.dropdown-container{
+    background-color: $background-color;
 }
