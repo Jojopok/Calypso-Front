@@ -37,7 +37,7 @@
       (dataChange)="onUserAnswerChange($event)">
     </app-ckeditor>
 
-    <div class="mt-4 text-end">
+    <div class="mt-4 mb-5 text-end">
       <app-button
         [label]="'Envoyer ma réponse'"
         buttonType="submit"
@@ -45,5 +45,17 @@
       </app-button>
     </div>
   </div>
-
+  <div ngbAccordion>
+    <div ngbAccordionItem [collapsed]="true">
+      <h2 ngbAccordionHeader>
+        <button ngbAccordionButton>Afficher la solution</button>
+      </h2>
+      <div ngbAccordionCollapse>
+        <div ngbAccordionBody>
+          <div [innerHTML]="algo?.answer">{{algo?.answer}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
