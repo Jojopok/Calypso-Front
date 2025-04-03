@@ -13,6 +13,7 @@ import { User } from '../../../models/user';
 import { UserAnswerService } from '../../../services/user-answer.service';
 import { UserAnswer } from '../../../models/user-answer';
 import {AppToastService} from "../../../services/app-toast.service";
+import { NgbAccordionBody, NgbAccordionButton, NgbAccordionCollapse, NgbAccordionDirective, NgbAccordionItem } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-algo-show',
@@ -23,7 +24,12 @@ import {AppToastService} from "../../../services/app-toast.service";
     TitleComponent,
     SubtitleComponent,
     CkeditorComponent,
-    ButtonComponent
+    ButtonComponent,
+    NgbAccordionBody,
+    NgbAccordionButton,
+    NgbAccordionItem,
+    NgbAccordionDirective,
+    NgbAccordionCollapse
   ],
   templateUrl: './algo-show.component.html',
   styleUrl: './algo-show.component.scss'
