@@ -1,11 +1,48 @@
-<div class="login-form z-4 p-4 rounded d-flex flex-column w-75 mx-auto my-0 align-items-center"  [formGroup]="loginForm">
+<div class="login-form z-4 p-4 rounded d-flex flex-column w-75 mx-auto my-0 align-items-center" [formGroup]="loginForm">
   <app-title text="BIENVENUE"></app-title>
   <app-text class="text-center mb-2" text="Connectez-vous dès maintenant pour découvrir une plateforme unique centralisant toutes vos cérémonies et réunions professionnelles"></app-text>
-  <app-input-field class="w-75 m-3" label="Votre adresse mail :" fieldId="email" type="email" formControlName="email"></app-input-field>
-  <app-input-field class="w-75"label="Mot de passe :" fieldId="password" type="password" formControlName="password"></app-input-field>
-  <a class="m-3" href="#">Mot de passe oublié ?</a>
-  <app-button class="text-light mb-2" label="SE CONNECTER" type="submit" buttonType="primary" (click)="onSubmit()"></app-button>
-  <app-button class="text-light" label="S'ENREGISTRER" buttonType="secondary" [routerLink]="['/register']"></app-button>
-</div>
-
   
+  <!-- Champ Email -->
+  <app-input-field 
+    class="w-75 m-3" 
+    label="Votre adresse mail :" 
+    fieldId="email" 
+    type="email" 
+    formControlName="email"
+    [ngClass]="{'error-border': email?.invalid && (email?.touched || email?.dirty)}">
+  </app-input-field>
+  <div *ngIf="email?.invalid && (email?.touched || email?.dirty)" class="error-message w-75 mb-2">
+    <div *ngIf="email?.errors?.['required']">L'email est obligatoire</div>
+    <div *ngIf="email?.errors?.['email']">Veuillez entrer une adresse email valide</div>
+  </div>
+
+  <!-- Champ Mot de passe -->
+  <app-input-field 
+    class="w-75" 
+    label="Mot de passe :" 
+    fieldId="password" 
+    type="password" 
+    formControlName="password"
+    [ngClass]="{'error-border': password?.invalid && (password?.touched || password?.dirty)}">
+  </app-input-field>
+  <div *ngIf="password?.invalid && (password?.touched || password?.dirty)" class="error-message w-75 mb-2">
+    <div *ngIf="password?.errors?.['required']">Le mot de passe est obligatoire</div>
+  </div>
+
+  <a class="m-3" href="#">Mot de passe oublié ?</a>
+  
+  <app-button 
+    class="text-light mb-2" 
+    label="SE CONNECTER" 
+    type="submit" 
+    buttonType="primary" 
+    (click)="onSubmit()">
+  </app-button>
+  
+  <app-button 
+    class="text-light" 
+    label="S'ENREGISTRER" 
+    buttonType="secondary" 
+    [routerLink]="['/register']">
+  </app-button>
+</div>
