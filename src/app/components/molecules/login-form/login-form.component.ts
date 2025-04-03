@@ -6,11 +6,12 @@ import { TitleComponent } from '../../atoms/title/title.component';
 import { TextComponent } from '../../atoms/text/text.component';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login-form',
   standalone: true,
-  imports: [ReactiveFormsModule, InputFieldComponent, ButtonComponent, TitleComponent, TextComponent, RouterModule],
+  imports: [ReactiveFormsModule, InputFieldComponent, ButtonComponent, TitleComponent, TextComponent, RouterModule, CommonModule],
   templateUrl: './login-form.component.html',
   styleUrl: './login-form.component.scss'
 })
@@ -22,6 +23,14 @@ export class LoginFormComponent {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(3)]],
     });
+  }
+
+  get email() {
+    return this.loginForm.get('email');
+  }
+  
+  get password() {
+    return this.loginForm.get('password');
   }
 
   onSubmit(): void {

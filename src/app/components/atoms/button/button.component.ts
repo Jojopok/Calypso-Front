@@ -12,4 +12,5 @@ export class ButtonComponent {
   @Input() label: string = '';
   @Input() buttonType: 'primary' | 'secondary' | 'submit' = 'primary';
   @Input() type:'button' | 'submit' = 'button';
+  @Input() disabled: boolean = false;
 }
