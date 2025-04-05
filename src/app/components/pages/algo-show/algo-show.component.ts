@@ -106,7 +106,7 @@ export class AlgoShowComponent implements OnInit {
       },
       error: (err) => {
         console.error('❌ Erreur lors de l’envoi de la réponse', err);
-        this.toastservice.showSuccess('Erreur', "Votre réponse n'a pas pu être enregistrée");
+        this.toastservice.showDanger('Erreur', "Votre réponse n'a pas pu être enregistrée");
       }
     });
   }
