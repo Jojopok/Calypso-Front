@@ -9,6 +9,7 @@ import { AdminComponent } from './components/pages/admin/admin.component';
 import { AdminUsersComponent } from './components/pages/admin-users/admin-users.component';
 import { BugComponent } from './components/pages/bug/bug.component';
 import { NewAlgoComponent } from './components/pages/new-algo/new-algo.component';
+import { AuthGuard } from './guards/auth.guard';
 
 export const appRoutes: Routes = [
   // Pages sans layout
@@ -19,6 +20,7 @@ export const appRoutes: Routes = [
   {
     path: '',
     component: MainLayoutComponent,
+    canActivateChild: [AuthGuard],
     children: [
       { path: 'home', component: HomePageComponent }, // Page d'accueil après connexion
       { path: 'profil', component: UserProfileComponent }, // Page de profil utilisateur
