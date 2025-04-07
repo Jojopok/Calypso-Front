@@ -1,7 +1,6 @@
-// src/app/guards/auth.guard.ts
 import { Injectable } from '@angular/core';
 import { CanActivateChild, Router } from '@angular/router';
-import { AuthService } from '../services/auth.service'; // ton service d'authentification
+import { AuthService } from '../services/auth.service'; 
 import { Observable } from 'rxjs';
 
 @Injectable({
